@@ -1,0 +1,2 @@
+for some reason git doesn't use EDITOR in Kubuntu(bash), just do:
+    git config --global core.editor "vim"

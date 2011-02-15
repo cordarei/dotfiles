@@ -1,7 +1,7 @@
 set nocompatible
 
 " colors
-colorscheme ir_black
+colorscheme midnight2
 set background=dark
 syntax on
 

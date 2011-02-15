@@ -1,7 +1,7 @@
 set nocompatible
 
 " colors
-colorscheme professional
+colorscheme desert256
 syntax on
 
 " Set leader to comma.

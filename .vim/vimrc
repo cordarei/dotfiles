@@ -1,0 +1,44 @@
+set nocompatible
+
+" colors
+colorscheme ir_black
+set background=dark
+syntax on
+
+" Set leader to comma.
+let mapleader = ","
+
+filetype plugin indent on
+
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround     " indent to a multiple of shiftwidth
+
+set autoindent
+set smartindent
+
+" Show matching brackets.
+set showmatch
+set mat=5  " for half a sec
+
+" Flexible backspace: allow backspacing over autoindent, line breaks, start of
+" insert.
+set backspace=indent,eol,start
+
+" This sets soft wrapping:
+" set wrap linebreak textwidth=0
+
+:nmap <leader>w :w<cr>
+
+" Don't force save when changing buffers
+set hidden
+
+autocmd FileType make setlocal noexpandtab
+
+set ruler
+set incsearch
+
+" alternative to ESC
+imap <C-n> <Esc>

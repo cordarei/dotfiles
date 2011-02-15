@@ -1,8 +1,7 @@
 set nocompatible
 
 " colors
-colorscheme midnight2
-set background=dark
+colorscheme professional
 syntax on
 
 " Set leader to comma.

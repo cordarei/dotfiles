@@ -1,7 +1,7 @@
 #!/bin/sh
 
 SESSION=$1
-if [ "X$1" -eq "X" ]; then
+if [ -z "$1" ]; then
     SESSION=$USER
 fi
 

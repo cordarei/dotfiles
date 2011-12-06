@@ -29,7 +29,8 @@ set backspace=indent,eol,start
 " This sets soft wrapping:
 " set wrap linebreak textwidth=0
 
-:nmap <leader>w :w<cr>
+nmap <leader>w :w<cr>
+nmap <C-u> :u<cr>
 
 " Don't force save when changing buffers
 set hidden

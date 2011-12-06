@@ -1,8 +1,8 @@
 set nocompatible
 
 " colors
-colorscheme desert256
 syntax on
+set background=dark
 
 " Set leader to comma.
 let mapleader = ","

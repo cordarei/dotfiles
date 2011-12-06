@@ -45,5 +45,12 @@ autocmd FileType make setlocal noexpandtab
 set ruler
 set incsearch
 
+" No bell
+set visualbell
+set noerrorbells
+
+" Ignore some files for filename completion
+set wildignore=*.pyc,*.swp
+
 " alternative to ESC
 imap <C-n> <Esc>

@@ -29,7 +29,12 @@ set backspace=indent,eol,start
 " This sets soft wrapping:
 " set wrap linebreak textwidth=0
 
+" quicker save
 nmap <leader>w :w<cr>
+" edit and reload .vimrc from inside vim
+nmap <silent> <leader>ev :e ~/.vim/vimrc<cr>
+nmap <silent> <leader>sv :so $MYVIMRC<cr>
+" undo shortcut
 nmap <C-u> :u<cr>
 
 " Don't force save when changing buffers

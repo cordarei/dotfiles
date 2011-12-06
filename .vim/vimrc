@@ -37,6 +37,8 @@ nmap <silent> <leader>ev :e ~/.vim/vimrc<cr>
 nmap <silent> <leader>sv :so $MYVIMRC<cr>
 " undo shortcut
 nmap <C-u> :u<cr>
+" unbind annoying default command
+nmap s <Nop>
 
 " Don't force save when changing buffers
 set hidden
@@ -45,6 +47,8 @@ autocmd FileType make setlocal noexpandtab
 
 set ruler
 set incsearch
+set hlsearch
+nmap <silent> <leader>h :nohlsearch<cr>
 
 " No bell
 set visualbell

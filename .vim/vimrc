@@ -32,6 +32,8 @@ set backspace=indent,eol,start
 
 " quicker save
 nmap <leader>w :w<cr>
+" faster quit
+nmap <leader>q :q<cr>
 " edit and reload .vimrc from inside vim
 nmap <silent> <leader>ev :e ~/.vim/vimrc<cr>
 "nmap <silent> <leader>sv :so $MYVIMRC<cr>

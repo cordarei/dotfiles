@@ -39,6 +39,11 @@ nmap <silent> <leader>sv :so $MYVIMRC<cr>
 nmap <C-u> :u<cr>
 " unbind annoying default command
 nmap s <Nop>
+nmap <leader>n :bn<cr>
+nmap <leader>p :bp<cr>
+
+set pastetoggle=<F6> "set key to toggle paste mode
+nmap <silent> <F7> :set nowrap!<cr>
 
 " Don't force save when changing buffers
 set hidden
@@ -54,8 +59,19 @@ nmap <silent> <leader>h :nohlsearch<cr>
 set visualbell
 set noerrorbells
 
+" useful settings for file opening menu
+set wildmenu
+set wildmode=list:longest
 " Ignore some files for filename completion
 set wildignore=*.pyc,*.swp
 
 " alternative to ESC
 imap <C-n> <Esc>
+
+" Convenient command to see the difference between the current buffer and the
+" " file it was loaded from, thus the changes you made.
+" " Only define it when not defined already.
+if !exists(":DiffOrig")
+    command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+                \ | wincmd p | diffthis
+endif

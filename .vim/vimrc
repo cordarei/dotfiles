@@ -34,13 +34,18 @@ set backspace=indent,eol,start
 nmap <leader>w :w<cr>
 " edit and reload .vimrc from inside vim
 nmap <silent> <leader>ev :e ~/.vim/vimrc<cr>
-nmap <silent> <leader>sv :so $MYVIMRC<cr>
+"nmap <silent> <leader>sv :so $MYVIMRC<cr>
+"quicker sub shortcuts
+nmap <leader>s :s/
+nmap <leader>S :%s/
 " undo shortcut
 nmap <C-u> :u<cr>
 " unbind annoying default command
 nmap s <Nop>
+" quicker(?) keys for buffer navigation
 nmap <leader>n :bn<cr>
 nmap <leader>p :bp<cr>
+nmap <leader>k :bd<cr>
 
 set pastetoggle=<F6> "set key to toggle paste mode
 nmap <silent> <F7> :set nowrap!<cr>
@@ -58,6 +63,9 @@ nmap <silent> <leader>h :nohlsearch<cr>
 " No bell
 set visualbell
 set noerrorbells
+
+" showcmd helps sometimes
+set showcmd
 
 " useful settings for file opening menu
 set wildmenu

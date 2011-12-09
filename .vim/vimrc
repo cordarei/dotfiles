@@ -75,6 +75,11 @@ set wildmode=list:longest
 " Ignore some files for filename completion
 set wildignore=*.pyc,*.swp
 
+" get rid of *~ and *.swp files
+set nobackup
+set nowritebackup
+set noswapfile
+
 " alternative to ESC
 imap <C-n> <Esc>
 

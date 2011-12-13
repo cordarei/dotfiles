@@ -49,7 +49,7 @@ nmap s <Nop>
 " quicker(?) keys for buffer navigation
 nmap <leader>n :bn<cr>
 nmap <leader>p :bp<cr>
-nmap <leader>k :bd<cr>
+nmap <leader>k :BD<cr>
 " repeat command over visual selection
 vnoremap . :normal .<cr>
 

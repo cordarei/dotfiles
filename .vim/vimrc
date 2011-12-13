@@ -3,7 +3,7 @@ set nocompatible
 " colors
 syntax on
 set background=dark
-colorscheme moria
+colorscheme delek
 
 " Set leader to comma.
 let mapleader = ","
@@ -48,6 +48,8 @@ nmap s <Nop>
 nmap <leader>n :bn<cr>
 nmap <leader>p :bp<cr>
 nmap <leader>k :bd<cr>
+" repeat command over visual selection
+vnoremap . :normal .<cr>
 
 set pastetoggle=<F6> "set key to toggle paste mode
 nmap <silent> <F7> :set nowrap!<cr>

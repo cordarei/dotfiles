@@ -75,7 +75,7 @@ set showcmd
 
 " useful settings for file opening menu
 set wildmenu
-set wildmode=list:longest
+set wildmode=list:longest,full
 " Ignore some files for filename completion
 set wildignore=*.pyc,*.swp
 

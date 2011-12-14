@@ -8,7 +8,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="candy"
 
 # Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Comment this out to disable weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
@@ -34,3 +34,4 @@ alias tm='~/Development/cordarei-dotfiles/bin/start-tmux.sh'
 #[ -f /etc/DIR_COLORS ] && eval $(dircolors -b /etc/DIR_COLORS)
 eval $(dircolors)
 export ZLSCOLORS="${LS_COLORS}"
+[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc

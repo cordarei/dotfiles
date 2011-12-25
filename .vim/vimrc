@@ -96,7 +96,7 @@ if !exists(":DiffOrig")
 endif
 
 " call make silently and redraw the screen afterward
-function Make()
+function! Make()
     silent make
     redraw!
 endfunction

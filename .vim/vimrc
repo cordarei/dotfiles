@@ -94,3 +94,11 @@ if !exists(":DiffOrig")
     command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
                 \ | wincmd p | diffthis
 endif
+
+" call make silently and redraw the screen afterward
+function Make()
+    silent make
+    redraw!
+endfunction
+
+nmap <leader>m :call Make()<cr>

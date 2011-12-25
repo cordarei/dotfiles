@@ -35,3 +35,6 @@ alias tm='~/Development/cordarei-dotfiles/bin/start-tmux.sh'
 eval $(dircolors)
 export ZLSCOLORS="${LS_COLORS}"
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
+[[ -d $HOME/.local/man ]] && export MANPATH=$HOME/.local/man:$MANPATH

@@ -7,8 +7,9 @@
 # appropriate separated provided by other scripts.
 
 # Initialize XDG env vars
-[ $XDG_DATA_HOME ] || export XDG_DATA_HOME="$HOME/.local/share"
-[ $XDG_CONFIG_HOME ] || export XDG_CONFIG_HOME="$HOME/.config"
+[[ -n $XDG_DATA_HOME ]]   || export XDG_DATA_HOME="$HOME/.local/share"
+[[ -n $XDG_CONFIG_HOME ]] || export XDG_CONFIG_HOME="$HOME/.config"
+[[ -n $XDG_CACHE_HOME ]]  || export XDG_CACHE_HOME="$HOME/.cache"
 
 export DOTFILES_DIR=$XDG_CONFIG_HOME/dotfiles
 

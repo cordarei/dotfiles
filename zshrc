@@ -19,7 +19,7 @@ export DOTFILES_DIR=$XDG_CONFIG_HOME/dotfiles
 
 
 # Source specific zshrc scripts:
-for zshrc in (zshrc.oh-my-zsh); do
+for zshrc in zshrc.oh-my-zsh; do
     source $DOTFILES_DIR/$zshrc
 done
 

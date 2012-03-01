@@ -25,8 +25,17 @@ for zshrc in zshrc.oh-my-zsh; do
 done
 
 
-# Define custom aliases (too specific to go into oh-my-zsh)
-alias tm='~/Development/cordarei-dotfiles/bin/start-tmux.sh'
+# Define function to start tmux
+function tm() {
+    local session=$1
+    [[ -n "$session" ]] || session=$USER
+
+    if tmux has-session -t $session >/dev/null 2>/dev/null; then
+        tmux attach -t $session
+    else
+        tmux new-session -s $session
+    fi
+}
 
 
 # Initialize pythonbrew if installed

@@ -1,29 +1,39 @@
-# Path to your oh-my-zsh configuration.
+#
+# Sets Oh My Zsh options.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   Joseph Irwin <joseph.irwin.gt@gmail.com>
+#
+
+# Path to the oh-my-zsh directory.
 ZSH=$XDG_CONFIG_HOME/oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="candy"
+# Set the key mapping style to 'emacs' or 'vi'.
+zstyle ':omz:editor' keymap 'emacs'
 
-# Set to this to use case-sensitive completion
-CASE_SENSITIVE="true"
+# Auto convert .... to ../..
+zstyle ':omz:editor' dot-expansion 'yes'
 
-# Comment this out to disable weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
+# Set case-sensitivity for completion, history lookup, etc.
+zstyle ':omz:*:*' case-sensitive 'yes'
 
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
+# Color output (auto set to 'no' on dumb terminals).
+zstyle ':omz:*:*' color 'yes'
 
-# Uncomment following line if you want to disable autosetting terminal title.
-DISABLE_AUTO_TITLE="true"
+# Auto set the tab and window titles.
+zstyle ':omz:terminal' auto-title 'no'
 
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+# Set the plugins to load (see $OMZ/plugins/).
+zstyle ':omz:load' plugin 'archive' 'git'
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+# Set the prompt theme to load.
+# Setting it to 'random' loads a random theme.
+# Auto set to 'off' on dumb terminals.
+zstyle ':omz:prompt' theme 'cordarei'
 
-source $ZSH/oh-my-zsh.sh
+# This will make you shout: OH MY ZSHELL!
+source "$ZSH/init.zsh"
+
+# Customize to your needs...
+

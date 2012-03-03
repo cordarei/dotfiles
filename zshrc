@@ -27,7 +27,7 @@ function __init_xdg_vars() {
         XDG_PICTURES_DIR \
         XDG_VIDEOS_DIR
 }
-__init_xdg_vars()
+__init_xdg_vars
 
 export DOTFILES_DIR=$XDG_CONFIG_HOME/dotfiles
 

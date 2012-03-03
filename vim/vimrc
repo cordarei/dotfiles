@@ -74,6 +74,9 @@ nmap <silent> <leader>h :nohlsearch<cr>
 set visualbell
 set noerrorbells
 
+" Don't set the window title
+set notitle
+
 " showcmd helps sometimes
 set showcmd
 

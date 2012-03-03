@@ -7,9 +7,27 @@
 # appropriate separated provided by other scripts.
 
 # Initialize XDG env vars
-[[ -n $XDG_DATA_HOME ]]   || export XDG_DATA_HOME="$HOME/.local/share"
-[[ -n $XDG_CONFIG_HOME ]] || export XDG_CONFIG_HOME="$HOME/.config"
-[[ -n $XDG_CACHE_HOME ]]  || export XDG_CACHE_HOME="$HOME/.cache"
+function __init_xdg_vars() {
+    #get basic dirs or use defaults
+    XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
+    XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
+    XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
+    #source user dir defs
+    [[ -f "$XDG_CONFIG_HOME/user-dirs.dirs" ]] && source "$XDG_CONFIG_HOME/user-dirs.dirs"
+    export \
+        XDG_DATA_HOME \
+        XDG_CONFIG_HOME \
+        XDG_CACHE_HOME \
+        XDG_DESKTOP_DIR \
+        XDG_DOWNLOAD_DIR \
+        XDG_TEMPLATES_DIR \
+        XDG_PUBLICSHARE_DIR \
+        XDG_DOCUMENTS_DIR \
+        XDG_MUSIC_DIR \
+        XDG_PICTURES_DIR \
+        XDG_VIDEOS_DIR
+}
+__init_xdg_vars()
 
 export DOTFILES_DIR=$XDG_CONFIG_HOME/dotfiles
 

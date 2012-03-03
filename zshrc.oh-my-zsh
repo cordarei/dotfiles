@@ -22,7 +22,7 @@ zstyle ':omz:*:*' case-sensitive 'yes'
 zstyle ':omz:*:*' color 'yes'
 
 # Set default options for 'ls'
-zstyle ':omz:alias:ls' opts '-H'
+zstyle ':omz:alias:ls' opts '-L'
 
 # Auto set the tab and window titles.
 zstyle ':omz:terminal' auto-title 'no'

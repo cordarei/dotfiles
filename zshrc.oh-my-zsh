@@ -21,6 +21,9 @@ zstyle ':omz:*:*' case-sensitive 'yes'
 # Color output (auto set to 'no' on dumb terminals).
 zstyle ':omz:*:*' color 'yes'
 
+# Set default options for 'ls'
+zstyle ':omz:alias:ls' opts '-H'
+
 # Auto set the tab and window titles.
 zstyle ':omz:terminal' auto-title 'no'
 

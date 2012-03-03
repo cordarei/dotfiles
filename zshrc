@@ -36,6 +36,10 @@ export DOTFILES_DIR=$XDG_CONFIG_HOME/dotfiles
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 [[ -d $HOME/.local/man ]] && export MANPATH=$HOME/.local/man:$MANPATH
 
+# Fix VTE/Terminal misfeature
+if [[ "$COLORTERM" == "Terminal" ]] && [[ "$TERM" == "xterm" ]]; then
+    TERM="xterm-256color"
+fi
 
 # Source specific zshrc scripts:
 for script in $DOTFILES_DIR/zshrc.*; do

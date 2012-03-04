@@ -6,6 +6,7 @@
 # provided by oh-my-zsh, with some personal conveniences which are more
 # appropriate separated provided by other scripts.
 
+
 # Initialize XDG env vars
 function __init_xdg_vars() {
     #get basic dirs or use defaults
@@ -31,10 +32,6 @@ __init_xdg_vars
 
 export DOTFILES_DIR=$XDG_CONFIG_HOME/dotfiles
 
-
-# Add local install dirs to path
-[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
-[[ -d $HOME/.local/man ]] && export MANPATH=$HOME/.local/man:$MANPATH
 
 # Fix VTE/Terminal misfeature
 if [[ "$COLORTERM" == "Terminal" ]] && [[ "$TERM" == "xterm" ]]; then

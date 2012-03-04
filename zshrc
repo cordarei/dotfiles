@@ -56,6 +56,13 @@ function tm() {
     fi
 }
 
+# Define function to run pip in a temporary directory
+function pip() {
+    local tmp=$(mktemp -d)
+    ( cd $tmp; command pip "$@" )
+    rm -rf $tmp
+}
+
 
 # Initialize pythonbrew if installed
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc

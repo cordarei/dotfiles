@@ -19,3 +19,6 @@
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "vim/bundle/colorchart"]
+	path = vim/bundle/colorchart
+	url = https://github.com/godlygeek/colorchart.git

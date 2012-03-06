@@ -1,5 +1,7 @@
 [core]
 	editor = vim
+[init]
+	templatedir = ~/.config/dotfiles/git_template
 [alias]
 	st = status
 	b = branch

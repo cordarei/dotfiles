@@ -68,6 +68,7 @@ set hidden
 
 autocmd FileType make setlocal noexpandtab
 autocmd FileType gitconfig setlocal noexpandtab
+autocmd BufRead gitconfig setlocal filetype=gitconfig
 
 set ruler
 set incsearch

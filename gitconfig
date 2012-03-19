@@ -1,5 +1,3 @@
-; vim: set ft=gitconfig :
-
 [core]
 	editor = vim
 	pager = less -FSRX

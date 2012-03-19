@@ -67,6 +67,7 @@ nmap <silent> <F7> :set nowrap!<cr>
 set hidden
 
 autocmd FileType make setlocal noexpandtab
+autocmd FileType gitconfig setlocal noexpandtab
 
 set ruler
 set incsearch

@@ -7,7 +7,7 @@
 #
 
 # Path to the oh-my-zsh directory.
-ZSH=$XDG_CONFIG_HOME/oh-my-zsh
+ZSH=$DOTFILES_DIR/omz
 
 # Set the key mapping style to 'emacs' or 'vi'.
 zstyle ':omz:editor' keymap 'emacs'

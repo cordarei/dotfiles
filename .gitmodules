@@ -31,3 +31,6 @@
 [submodule "vim/bundle/vim-distinguished"]
 	path = vim/bundle/vim-distinguished
 	url = https://github.com/Lokaltog/vim-distinguished.git
+[submodule "omz"]
+	path = omz
+	url = https://github.com/cordarei/oh-my-zsh.git

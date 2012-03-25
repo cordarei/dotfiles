@@ -30,6 +30,9 @@ zstyle ':omz:terminal' auto-title 'no'
 # Set the plugins to load (see $OMZ/plugins/).
 zstyle ':omz:load' plugin 'archive' 'git' 'gen-pass'
 
+# Set password file for gen-pass
+zstyle ':omz:plugin:gen-pass' passfile "${XDG_CONFIG_HOME}/passwd"
+
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.

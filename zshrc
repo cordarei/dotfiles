@@ -45,7 +45,7 @@ done
 
 
 # Define function to start tmux
-function tm() {
+function tm {
     local session=$1
     [[ -n "$session" ]] || session=$USER
 
@@ -57,13 +57,13 @@ function tm() {
 }
 
 # Define function to run pip in a temporary directory
-function pip() {
+function pip {
     local tmp=$(mktemp -d)
     ( cd $tmp; command pip "$@" )
     rm -rf $tmp
 }
 
-eglob () {
+function eglob {
     setopt localoptions extendedglob
     local c=$1
     shift

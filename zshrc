@@ -63,6 +63,12 @@ function pip() {
     rm -rf $tmp
 }
 
+eglob () {
+    setopt localoptions extendedglob
+    local c=$1
+    shift
+    $c $~*
+}
 
 # Initialize pythonbrew if installed
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc

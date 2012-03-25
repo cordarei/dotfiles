@@ -28,7 +28,7 @@ zstyle ':omz:alias:ls' opts '-h -F --group-directories-first'
 zstyle ':omz:terminal' auto-title 'no'
 
 # Set the plugins to load (see $OMZ/plugins/).
-zstyle ':omz:load' plugin 'archive' 'git'
+zstyle ':omz:load' plugin 'archive' 'git' 'gen-pass'
 
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.

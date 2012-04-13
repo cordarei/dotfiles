@@ -8,7 +8,7 @@
 
 
 # Initialize XDG env vars
-function __init_xdg_vars() {
+function __init_xdg_vars {
     #get basic dirs or use defaults
     XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
     XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}

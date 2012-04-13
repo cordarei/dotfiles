@@ -56,6 +56,7 @@ set hidden
 autocmd FileType make setlocal noexpandtab
 autocmd FileType gitconfig setlocal noexpandtab
 autocmd BufRead gitconfig setlocal filetype=gitconfig
+autocmd FileType rst setlocal tw=72
 
 set ruler
 

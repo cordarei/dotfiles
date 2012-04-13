@@ -6,14 +6,19 @@
 #   Joseph Irwin <joseph.irwin.gt@gmail.com>
 #
 
-# Path to the oh-my-zsh directory.
-ZSH=$DOTFILES_DIR/omz
+# Set the path to the oh-my-zsh directory.
+export OMZ="$DOTFILES_DIR/omz"
+
+# Make sure the zsh cache directory exists.
+zsh_cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+[[ -d "$zsh_cache_dir" ]] || mkdir -p "$zsh_cache_dir"
+unset zsh_cache_dir
 
 # Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':omz:editor' keymap 'emacs'
+zstyle ':omz:module:editor' keymap 'emacs'
 
 # Auto convert .... to ../..
-zstyle ':omz:editor' dot-expansion 'yes'
+zstyle ':omz:module:editor' dot-expansion 'yes'
 
 # Set case-sensitivity for completion, history lookup, etc.
 zstyle ':omz:*:*' case-sensitive 'yes'
@@ -21,25 +26,20 @@ zstyle ':omz:*:*' case-sensitive 'yes'
 # Color output (auto set to 'no' on dumb terminals).
 zstyle ':omz:*:*' color 'yes'
 
-# Set default options for 'ls'
-zstyle ':omz:alias:ls' opts '-h -F --group-directories-first'
+# Don't auto set the tab and window titles.
+zstyle ':omz:module:terminal' auto-title 'no'
 
-# Auto set the tab and window titles.
-zstyle ':omz:terminal' auto-title 'no'
-
-# Set the plugins to load (see $OMZ/plugins/).
-zstyle ':omz:load' plugin 'archive' 'git' 'gen-pass'
+# Set the Oh My Zsh modules to load (browse modules).
+zstyle ':omz:load' omodule 'environment' 'terminal' 'editor' 'completion' \
+  'history' 'directory' 'spectrum' 'alias' 'utility' 'prompt' 'git'
 
 # Set password file for gen-pass
-zstyle ':omz:plugin:gen-pass' passfile "${XDG_CONFIG_HOME}/passwd"
+#zstyle ':omz:plugin:gen-pass' passfile "${XDG_CONFIG_HOME}/passwd"
 
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-zstyle ':omz:prompt' theme 'cordarei'
+zstyle ':omz:module:prompt' theme 'cordarei'
 
-# This will make you shout: OH MY ZSHELL!
-source "$ZSH/init.zsh"
-
-# Customize to your needs...
-
+# Load oh-my-zsh
+source "$OMZ/init.zsh"

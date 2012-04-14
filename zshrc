@@ -44,15 +44,18 @@ for script in $DOTFILES_DIR/zshrc.*; do
 done
 
 
+export EVENT_NOEPOLL=1 # work around a bug in tmux/libevent
 # Define function to start tmux
 function tm {
-    local session=$1
-    [[ -n "$session" ]] || session=$USER
+    local session="${1:-$USER}"
 
-    if tmux has-session -t $session >/dev/null 2>/dev/null; then
-        tmux attach -t $session
+    # work around a bug in tmux/libevent
+#    local out=$(tmux has-session -t "$session" 2>&1)
+#    if (( 0 == $? )); then
+    if tmux has-session -t "$session" >/dev/null 2>&1 ; then
+        tmux attach -t "$session"
     else
-        tmux new-session -s $session
+        tmux new-session -s "$session"
     fi
 }
 

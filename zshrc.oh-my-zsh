@@ -31,7 +31,7 @@ zstyle ':omz:module:terminal' auto-title 'no'
 
 # Set the Oh My Zsh modules to load (browse modules).
 zstyle ':omz:load' omodule 'environment' 'terminal' 'editor' 'completion' \
-  'history' 'directory' 'spectrum' 'alias' 'utility' 'prompt' 'git'
+  'history' 'directory' 'spectrum' 'alias' 'utility' 'prompt' 'git' 'cabal'
 
 # Set password file for gen-pass
 #zstyle ':omz:plugin:gen-pass' passfile "${XDG_CONFIG_HOME}/passwd"

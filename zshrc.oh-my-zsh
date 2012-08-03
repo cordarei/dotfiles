@@ -7,7 +7,7 @@
 #
 
 # Set the path to the oh-my-zsh directory.
-export OMZ="$DOTFILES_DIR/omz"
+export PREZTO="$DOTFILES_DIR/prezto"
 
 # Make sure the zsh cache directory exists.
 zsh_cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
@@ -30,8 +30,19 @@ zstyle ':omz:*:*' color 'yes'
 zstyle ':omz:module:terminal' auto-title 'no'
 
 # Set the Oh My Zsh modules to load (browse modules).
-zstyle ':omz:load' omodule 'environment' 'terminal' 'editor' 'completion' \
-  'history' 'directory' 'spectrum' 'alias' 'utility' 'prompt' 'git' 'cabal'
+# The order matters.
+zstyle ':omz:load' omodule \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'history' \
+  'directory' \
+  'spectrum' \
+  'utility' \
+  'completion' \
+  'prompt' \
+  'git' \
+  'cabal'
 
 # Set password file for gen-pass
 #zstyle ':omz:plugin:gen-pass' passfile "${XDG_CONFIG_HOME}/passwd"
@@ -42,4 +53,4 @@ zstyle ':omz:load' omodule 'environment' 'terminal' 'editor' 'completion' \
 zstyle ':omz:module:prompt' theme 'cordarei'
 
 # Load oh-my-zsh
-source "$OMZ/init.zsh"
+source "$PREZTO/init.zsh"

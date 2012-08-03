@@ -37,3 +37,6 @@
 [submodule "vim/bundle/project"]
 	path = vim/bundle/project
 	url = git://github.com/cordarei/project.tar.gz.git
+[submodule "prezto"]
+	path = prezto
+	url = git@github.com:cordarei/prezto.git

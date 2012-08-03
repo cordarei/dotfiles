@@ -6,14 +6,37 @@
 #   Joseph Irwin <joseph.irwin.gt@gmail.com>
 #
 
-# Set the path to Oh My Zsh.
-#export OMZ="$HOME/.oh-my-zsh"
 
 # Paths
 typeset -gU cdpath fpath mailpath manpath path
 typeset -gUT INFOPATH infopath
 
-datadir="${XDG_DATA_HOME:-$HOME/.local/share}"
+# XDG directories
+#get basic dirs or use defaults
+XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
+XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
+#source user dir defs
+if [[ -f "$XDG_CONFIG_HOME/user-dirs.dirs" ]]; then
+    source "$XDG_CONFIG_HOME/user-dirs.dirs"
+    export \
+        XDG_DATA_HOME \
+        XDG_CONFIG_HOME \
+        XDG_CACHE_HOME \
+        XDG_DESKTOP_DIR \
+        XDG_DOWNLOAD_DIR \
+        XDG_TEMPLATES_DIR \
+        XDG_PUBLICSHARE_DIR \
+        XDG_DOCUMENTS_DIR \
+        XDG_MUSIC_DIR \
+        XDG_PICTURES_DIR \
+        XDG_VIDEOS_DIR
+fi
+
+# Set the path to prezto
+export PREZTO="$XDG_CONFIG_HOME/dotfiles/prezto"
+
+datadir="$XDG_DATA_HOME"
 
 # Set the the list of directories that cd searches.
 # cdpath=(
@@ -58,6 +81,12 @@ done
 unset path_file
 
 unset datadir
+
+
+# Fix VTE/Terminal misfeature
+if [[ "$COLORTERM" == "Terminal" ]] && [[ "$TERM" == "xterm" ]]; then
+    TERM="xterm-256color"
+fi
 
 # Language
 if [[ -z "$LANG" ]]; then

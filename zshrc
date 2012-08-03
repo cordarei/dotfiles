@@ -1,57 +1,64 @@
-#Base Z-shell configuration file
+# Zshell Configuration
 #
-# This file is my base z-shell config file; it should be symlinked to
-# ~/.zshrc. It serves to initialize the system environment variables
-# etc. and then calls out to other scripts. Most functionality is
-# provided by oh-my-zsh, with some personal conveniences which are more
-# appropriate separated provided by other scripts.
+# This file should be symlinked to ~/.zshrc
 
 
-# Initialize XDG env vars
-function __init_xdg_vars {
-    #get basic dirs or use defaults
-    XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
-    XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
-    XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
-    #source user dir defs
-    [[ -f "$XDG_CONFIG_HOME/user-dirs.dirs" ]] && source "$XDG_CONFIG_HOME/user-dirs.dirs"
-    export \
-        XDG_DATA_HOME \
-        XDG_CONFIG_HOME \
-        XDG_CACHE_HOME \
-        XDG_DESKTOP_DIR \
-        XDG_DOWNLOAD_DIR \
-        XDG_TEMPLATES_DIR \
-        XDG_PUBLICSHARE_DIR \
-        XDG_DOCUMENTS_DIR \
-        XDG_MUSIC_DIR \
-        XDG_PICTURES_DIR \
-        XDG_VIDEOS_DIR
-}
-__init_xdg_vars
+# Prezto Configuration:
 
-export DOTFILES_DIR=$XDG_CONFIG_HOME/dotfiles
+# Make sure the zsh cache directory exists.
+zsh_cache_dir="$XDG_CACHE_HOME/zsh"
+[[ -d "$zsh_cache_dir" ]] || mkdir -p "$zsh_cache_dir"
+unset zsh_cache_dir
+
+# Set the key mapping style to 'emacs' or 'vi'.
+zstyle ':omz:module:editor' keymap 'emacs'
+
+# Auto convert .... to ../..
+zstyle ':omz:module:editor' dot-expansion 'yes'
+
+# Set case-sensitivity for completion, history lookup, etc.
+zstyle ':omz:*:*' case-sensitive 'yes'
+
+# Color output (auto set to 'no' on dumb terminals).
+zstyle ':omz:*:*' color 'yes'
+
+# Don't auto set the tab and window titles.
+zstyle ':omz:module:terminal' auto-title 'no'
+
+# Set the Oh My Zsh modules to load (browse modules).
+# The order matters.
+zstyle ':omz:load' omodule \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'history' \
+  'directory' \
+  'spectrum' \
+  'utility' \
+  'completion' \
+  'prompt' \
+  'git' \
+  'cabal'
+
+# Set password file for gen-pass
+#zstyle ':omz:plugin:gen-pass' passfile "${XDG_CONFIG_HOME}/passwd"
+
+# Set the prompt theme to load.
+# Setting it to 'random' loads a random theme.
+# Auto set to 'off' on dumb terminals.
+zstyle ':omz:module:prompt' theme 'cordarei'
+
+# Load prezto
+source "$PREZTO/init.zsh"
 
 
-# Fix VTE/Terminal misfeature
-if [[ "$COLORTERM" == "Terminal" ]] && [[ "$TERM" == "xterm" ]]; then
-    TERM="xterm-256color"
-fi
-
-# Source specific zshrc scripts:
-for script in $DOTFILES_DIR/zshrc.*; do
-    source $script
-done
-
+# Utility Functions:
 
 export EVENT_NOEPOLL=1 # work around a bug in tmux/libevent
 # Define function to start tmux
 function tm {
     local session="${1:-$USER}"
 
-    # work around a bug in tmux/libevent
-#    local out=$(tmux has-session -t "$session" 2>&1)
-#    if (( 0 == $? )); then
     if tmux has-session -t "$session" >/dev/null 2>&1 ; then
         tmux attach -t "$session"
     else

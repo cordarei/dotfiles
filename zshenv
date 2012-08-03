@@ -35,6 +35,7 @@ fi
 
 # Set the path to prezto
 export PREZTO="$XDG_CONFIG_HOME/dotfiles/prezto"
+export OMZ="$PREZTO" # for temporary compatibility export the old variable name
 
 datadir="$XDG_DATA_HOME"
 

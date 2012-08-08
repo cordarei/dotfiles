@@ -42,6 +42,9 @@ fi
 export PREZTO="$XDG_CONFIG_HOME/dotfiles/prezto"
 export OMZ="$PREZTO" # for temporary compatibility export the old variable name
 
+# Set the path to use for pythonz installs
+export PYTHONZ_ROOT="$XDG_DATA_HOME/pythonz"
+
 datadir="$XDG_DATA_HOME"
 
 # Set the the list of directories that cd searches.

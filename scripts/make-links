@@ -1,0 +1,13 @@
+#!/bin/sh
+
+home="$(cd ~; pwd)"
+
+dir="$(dirname $0)"
+dir="$(cd $dir; pwd)"
+reldir="${dir#${home}/}"
+pdir="$(dirname $reldir)"
+
+for target in zshrc zshenv zlogin vimrc vim tmux.conf gitconfig
+do
+    (cd ~; ln -T -s -f "${pdir}/${target}" ".${target}")
+done

@@ -7,16 +7,21 @@
 #
 
 
+#
 # Paths
+#
+
 typeset -gU cdpath fpath mailpath manpath path
 typeset -gUT INFOPATH infopath
 
-# XDG directories
-#get basic dirs or use defaults
+# XDG directories:
+
+# Get basic directories or use defaults
 XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
 XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
 XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
-#source user dir defs
+
+# Source user directory definitions
 if [[ -f "$XDG_CONFIG_HOME/user-dirs.dirs" ]]; then
     source "$XDG_CONFIG_HOME/user-dirs.dirs"
     export \
@@ -84,27 +89,36 @@ unset path_file
 unset datadir
 
 
-# Fix VTE/Terminal misfeature
-if [[ "$COLORTERM" == "Terminal" ]] && [[ "$TERM" == "xterm" ]]; then
-    TERM="xterm-256color"
-fi
-
+#
 # Language
+#
+
 if [[ -z "$LANG" ]]; then
   eval "$(locale)"
 fi
 
+
+#
 # Editors
+#
+
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
 
-# Browser (Default)
+
+#
+# Browser
+#
+
 if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER='open'
 fi
 
+
+#
 # Less
+#
 
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
@@ -114,6 +128,16 @@ export LESS='-i -M -R -S -z-4'
 # Set the Less input preprocessor.
 if (( $+commands[lesspipe.sh] )); then
   export LESSOPEN='| /usr/bin/env lesspipe.sh %s 2>&-'
+fi
+
+
+#
+# System tweaks
+#
+
+# Fix VTE/Terminal misfeature
+if [[ "$COLORTERM" == "Terminal" ]] && [[ "$TERM" == "xterm" ]]; then
+    TERM="xterm-256color"
 fi
 
 # Prevent Ubuntu from calling compinit in /etc/zsh/zshenv

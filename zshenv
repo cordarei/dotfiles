@@ -44,6 +44,8 @@ export OMZ="$PREZTO" # for temporary compatibility export the old variable name
 
 # Set the path to use for pythonz installs
 export PYTHONZ_ROOT="$XDG_DATA_HOME/pythonz"
+# Set the path to use for virtualenvwrappper environments
+export WORKON_HOME="$XDG_DATA_HOME/pyvenvs"
 
 datadir="$XDG_DATA_HOME"
 

@@ -25,6 +25,9 @@ let g:solarized_termtrans=1
 " Use solarized colorscheme
 colorscheme solarized
 
+" Settings for python syntax highlighting
+let g:python_highlight_all=1
+
 
 " ============================== Behavior ==============================
 

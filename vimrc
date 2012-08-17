@@ -37,10 +37,6 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround     " indent to a multiple of shiftwidth
 
-" Indent settings
-set autoindent
-set smartindent
-
 " Show matching brackets.
 set showmatch
 set mat=5  " for half a sec
@@ -57,7 +53,7 @@ autocmd FileType make setlocal noexpandtab
 autocmd FileType gitconfig setlocal noexpandtab
 autocmd BufRead gitconfig setlocal filetype=gitconfig
 autocmd FileType rst setlocal tw=72
-autocmd FileType python setlocal tw=80
+autocmd FileType python setlocal tw=80 fo+=croq
 
 set ruler
 

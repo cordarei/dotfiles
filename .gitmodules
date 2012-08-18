@@ -36,10 +36,10 @@
 	url = git://github.com/cordarei/project.tar.gz.git
 [submodule "prezto"]
 	path = prezto
-	url = git@github.com:cordarei/prezto.git
+	url = git://github.com/cordarei/prezto.git
 [submodule "vim/bundle/vim-python-pep8-indent"]
 	path = vim/bundle/vim-python-pep8-indent
-	url = git://github.com/hynek/vim-python-pep8-indent.git
+	url = git://github.com/cordarei/vim-python-pep8-indent.git
 [submodule "vim/bundle/vim-python-syntax"]
 	path = vim/bundle/vim-python-syntax
 	url = git://github.com/cordarei/vim-python-syntax.git

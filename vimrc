@@ -84,6 +84,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" enable UniCycle plugin for Unicode goodness!
+let g:unicycle_on = 1
 
 " ================================ Keys ================================
 

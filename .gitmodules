@@ -43,3 +43,6 @@
 [submodule "vim/bundle/vim-python-syntax"]
 	path = vim/bundle/vim-python-syntax
 	url = git://github.com/cordarei/vim-python-syntax.git
+[submodule "vim/bundle/vim-unicycle"]
+	path = vim/bundle/vim-unicycle
+	url = git://github.com/cordarei/UniCycle.git

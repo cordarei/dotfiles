@@ -105,8 +105,8 @@ nmap <leader>s :s/
 nmap <leader>S :%s/
 
 " shortcuts to enable/disable UniCycle plugin
-nmap <leader>u :UniCycleOn
-nmap <leader>U :UniCycleOff
+nmap <leader>u :UniCycleOn<cr>
+nmap <leader>U :UniCycleOff<cr>
 
 " undo shortcut
 nmap <C-u> :u<cr>

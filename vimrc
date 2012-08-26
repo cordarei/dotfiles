@@ -84,8 +84,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" enable UniCycle plugin for Unicode goodness!
-let g:unicycle_on = 1
+" enable UniCycle plugin automatically for rst files
+autocmd FileType rst UniCycleOn
 
 " ================================ Keys ================================
 
@@ -103,6 +103,10 @@ nmap <leader>q :q<cr>
 "quicker sub shortcuts
 nmap <leader>s :s/
 nmap <leader>S :%s/
+
+" shortcuts to enable/disable UniCycle plugin
+nmap <leader>u :UniCycleOn
+nmap <leader>U :UniCycleOff
 
 " undo shortcut
 nmap <C-u> :u<cr>

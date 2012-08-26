@@ -92,8 +92,13 @@ autocmd FileType rst UniCycleOn
 " Set leader to comma.
 let mapleader = ","
 
+" Command mode without Shift
+nnoremap ; :
+vnoremap ; :
+
 " alternative to ESC
 imap <C-n> <Esc>
+imap <S-Tab> <Esc>
 
 " quicker save
 nmap <leader>w :w<cr>

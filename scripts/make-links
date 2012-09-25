@@ -7,7 +7,12 @@ dir="$(cd $dir; pwd)"
 reldir="${dir#${home}/}"
 pdir="$(dirname $reldir)"
 
-for target in zshrc zshenv zlogin vimrc vim tmux.conf gitconfig
+for target in vimrc vim tmux.conf gitconfig
 do
     (cd ~; ln -T -s -f "${pdir}/${target}" ".${target}")
+done
+
+for target in zshenv zshrc zpreztorc zlogin
+do
+    (cd ~; ln -T -s -f "${pdir}/prezto/runcoms/${target}" ".${target}")
 done

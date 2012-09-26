@@ -46,3 +46,6 @@
 [submodule "vim/bundle/vim-unicycle"]
 	path = vim/bundle/vim-unicycle
 	url = git://github.com/cordarei/UniCycle.git
+[submodule "vim/bundle/vim-cpp"]
+	path = vim/bundle/vim-cpp
+	url = git://github.com/cordarei/vim-cpp.git

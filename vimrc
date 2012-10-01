@@ -104,7 +104,6 @@ imap <S-Tab> <Esc>
 nmap <leader>w :w<cr>
 " faster quit
 nmap <leader>q :q<cr>
-nmap <C-q> :q<cr>
 
 "quicker sub shortcuts
 nmap <leader>s :s/

@@ -87,6 +87,9 @@ set noswapfile
 " enable UniCycle plugin automatically for rst files
 autocmd FileType rst UniCycleOn
 
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+
 " ================================ Keys ================================
 
 " Set leader to comma.

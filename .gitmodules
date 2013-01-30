@@ -49,3 +49,6 @@
 [submodule "vim/bundle/vim-cpp"]
 	path = vim/bundle/vim-cpp
 	url = git://github.com/cordarei/vim-cpp.git
+[submodule "vim/bundle/unite"]
+	path = vim/bundle/unite
+	url = git://github.com/Shougo/unite.vim.git

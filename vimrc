@@ -168,3 +168,45 @@ function! Make()
 endfunction
 
 nmap <leader>m :call Make()<cr>
+
+
+"
+" reST
+" TODO: consider a plugin
+"
+
+" Get a character from the user
+function! InChr()
+  let c = getchar()
+  if c =~ '^\d\+$'
+    let c = nr2char(c)
+  endif
+  return c
+endfunction
+
+" Transform the current line into a reST section header
+function! RstHead(chr, above)
+    let c = substitute(a:chr, "&", "\\\\&", "") " fix ampersand
+    echomsg c
+    "let c = a:chr
+    normal! mq"xyy
+    let @x = substitute(@x, ".", c, "g")
+    let @x = substitute(@x, ".$", "", "")
+    if (a:above)
+        execute "normal! O\<esc>\"xpj"
+    endif
+    execute "normal! o\<esc>"
+    normal! "xp`q
+endfunction
+
+" Get a character from the user and make a header using that character
+function! DoRstHead(above)
+    let c = InChr()
+    call RstHead(c, a:above)
+endfunction
+
+" nnoremap <silent> <leader>rh :call DoRstHead(0)<cr>
+" nnoremap <silent> <leader>rt :call DoRstHead(1)<cr>
+
+autocmd FileType rst nnoremap <silent> <leader>rh :call DoRstHead(0)<cr>
+autocmd FileType rst nnoremap <silent> <leader>rt :call DoRstHead(1)<cr>

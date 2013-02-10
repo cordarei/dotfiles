@@ -64,8 +64,8 @@ set incsearch
 set hlsearch
 
 " No bell
-set visualbell
-set noerrorbells
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
 " Don't set the window title
 set notitle

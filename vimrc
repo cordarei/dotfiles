@@ -90,6 +90,8 @@ autocmd FileType rst UniCycleOn
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
 
+" vimfiler
+let g:vimfiler_as_default_explorer = 1
 " ================================ Keys ================================
 
 " Set leader to comma.
@@ -116,8 +118,12 @@ nmap <leader>S :%s/
 nmap <leader>u :UniCycleOn<cr>
 nmap <leader>U :UniCycleOff<cr>
 
-" undo shortcut
-nmap <C-u> :u<cr>
+" Unite shortcuts
+nnoremap <C-u><C-f> :Unite file<cr>
+nnoremap <C-u><C-b> :Unite buffer<cr>
+
+" VimFiler
+nnoremap <leader>f :VimFiler .<cr>
 
 " unbind annoying default command
 nmap s <Nop>

@@ -102,21 +102,21 @@ nnoremap ; :
 vnoremap ; :
 
 " alternative to ESC
-imap <C-n> <Esc>
-imap <S-Tab> <Esc>
+inoremap <C-n> <Esc>
+inoremap <S-Tab> <Esc>
 
 " quicker save
-nmap <leader>w :w<cr>
+nnoremap <leader>w :w<cr>
 " faster quit
-nmap <leader>q :q<cr>
+nnoremap <leader>q :q<cr>
 
 "quicker sub shortcuts
-nmap <leader>s :s/
-nmap <leader>S :%s/
+nnoremap <leader>s :s/
+nnoremap <leader>S :%s/
 
 " shortcuts to enable/disable UniCycle plugin
-nmap <leader>u :UniCycleOn<cr>
-nmap <leader>U :UniCycleOff<cr>
+nnoremap <leader>u :UniCycleOn<cr>
+nnoremap <leader>U :UniCycleOff<cr>
 
 " Unite shortcuts
 nnoremap <C-u><C-f> :Unite file<cr>
@@ -126,17 +126,17 @@ nnoremap <C-u><C-b> :Unite buffer<cr>
 nnoremap <leader>f :VimFiler .<cr>
 
 " unbind annoying default command
-nmap s <Nop>
+nnoremap s <Nop>
 
 " quicker(?) keys for buffer navigation
-nmap <leader>n :bn<cr>
-nmap <leader>p :bp<cr>
-nmap <leader>l :b#<cr>
-nmap <leader>k :BD<cr>
+nnoremap <leader>n :bn<cr>
+nnoremap <leader>p :bp<cr>
+nnoremap <leader>l :b#<cr>
+nnoremap <leader>k :BD<cr>
 
 " quick turn off diff-mode
-nmap <leader>do :diffoff<cr>
-nmap <leader>dwo <c-w>o:diffoff<cr>
+nnoremap <leader>do :diffoff<cr>
+nnoremap <leader>dwo <c-w>o:diffoff<cr>
 
 " repeat command over visual selection
 vnoremap . :normal .<cr>
@@ -145,10 +145,10 @@ vnoremap . :normal .<cr>
 set pastetoggle=<F6>
 
 " Use F7 to toggle line wrapping
-nmap <silent> <F7> :set nowrap!<cr>
+nnoremap <silent> <F7> :set nowrap!<cr>
 
 " Clear search highlights
-nmap <silent> <leader>h :nohlsearch<cr>
+nnoremap <silent> <leader>h :nohlsearch<cr>
 
 
 " ======================= Functions and Commands =======================
@@ -167,7 +167,7 @@ function! Make()
     redraw!
 endfunction
 
-nmap <leader>m :call Make()<cr>
+nnoremap <leader>m :call Make()<cr>
 
 
 "
@@ -199,14 +199,5 @@ function! RstHead(chr, above)
     normal! "xp`q
 endfunction
 
-" Get a character from the user and make a header using that character
-function! DoRstHead(above)
-    let c = InChr()
-    call RstHead(c, a:above)
-endfunction
-
-" nnoremap <silent> <leader>rh :call DoRstHead(0)<cr>
-" nnoremap <silent> <leader>rt :call DoRstHead(1)<cr>
-
-autocmd FileType rst nnoremap <silent> <leader>rh :call DoRstHead(0)<cr>
-autocmd FileType rst nnoremap <silent> <leader>rt :call DoRstHead(1)<cr>
+autocmd FileType rst nnoremap <silent> <leader>rh :call RstHead(InChr(), 0)<cr>
+autocmd FileType rst nnoremap <silent> <leader>rt :call RstHead(InChr(), 1)<cr>

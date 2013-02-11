@@ -92,6 +92,7 @@ let g:neocomplcache_enable_at_startup = 1
 
 " vimfiler
 let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_enable_auto_cd = 1
 " ================================ Keys ================================
 
 " Set leader to comma.

@@ -123,7 +123,7 @@ nnoremap <C-u><C-f> :Unite file<cr>
 nnoremap <C-u><C-b> :Unite buffer<cr>
 
 " VimFiler
-nnoremap <leader>f :VimFiler .<cr>
+nnoremap <leader>f :VimFilerExplorer<cr>
 
 " unbind annoying default command
 nnoremap s <Nop>
@@ -153,21 +153,15 @@ nnoremap <silent> <leader>h :nohlsearch<cr>
 
 " ======================= Functions and Commands =======================
 
-" Convenient command to see the difference between the current buffer and the
-" " file it was loaded from, thus the changes you made.
-" " Only define it when not defined already.
-if !exists(":DiffOrig")
-    command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+" Convenient command to see the difference between the current buffer
+" and the file it was loaded from, thus the changes you made.
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
                 \ | wincmd p | diffthis
-endif
 
 " call make silently and redraw the screen afterward
-function! Make()
-    silent make
-    redraw!
-endfunction
+command! Make silent make | redraw!
 
-nnoremap <leader>m :call Make()<cr>
+nnoremap <leader>m :Make<cr>
 
 
 "
@@ -187,16 +181,16 @@ endfunction
 " Transform the current line into a reST section header
 function! RstHead(chr, above)
     let c = substitute(a:chr, "&", "\\\\&", "") " fix ampersand
-    echomsg c
-    "let c = a:chr
-    normal! mq"xyy
-    let @x = substitute(@x, ".", c, "g")
-    let @x = substitute(@x, ".$", "", "")
+    let savereg = @@
+    normal! mqyy
+    let @@ = substitute(@@, ".", c, "g")
+    let @@ = substitute(@@, ".$", "", "")
     if (a:above)
-        execute "normal! O\<esc>\"xpj"
+        execute "normal! O\<esc>pj"
     endif
     execute "normal! o\<esc>"
-    normal! "xp`q
+    normal! p`q
+    let @@ = savereg
 endfunction
 
 autocmd FileType rst nnoremap <silent> <leader>rh :call RstHead(InChr(), 0)<cr>

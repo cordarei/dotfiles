@@ -93,6 +93,13 @@ let g:neocomplcache_enable_at_startup = 1
 " vimfiler
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_enable_auto_cd = 1
+
+" html5.vim: disable unneeded options
+let g:html5_event_handler_attributes_complete = 0
+let g:html5_rdfa_attributes_complete = 0
+let g:html5_microdata_attributes_complete = 0
+let g:html5_aria_attributes_complete = 0
+
 " ================================ Keys ================================
 
 " Set leader to comma.

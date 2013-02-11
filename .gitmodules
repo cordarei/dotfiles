@@ -19,9 +19,6 @@
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
-[submodule "vim/bundle/colorchart"]
-	path = vim/bundle/colorchart
-	url = https://github.com/godlygeek/colorchart.git
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
@@ -31,9 +28,6 @@
 [submodule "vim/bundle/vim-distinguished"]
 	path = vim/bundle/vim-distinguished
 	url = https://github.com/Lokaltog/vim-distinguished.git
-[submodule "vim/bundle/project"]
-	path = vim/bundle/project
-	url = git://github.com/cordarei/project.tar.gz.git
 [submodule "prezto"]
 	path = prezto
 	url = git://github.com/cordarei/prezto.git

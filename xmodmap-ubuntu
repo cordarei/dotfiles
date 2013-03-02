@@ -1,0 +1,18 @@
+!
+! Reassign Caps Lock to generate Control, LCtrl to generate Escape, and the
+! Escape key to generate Caps_Lock
+!
+
+! We have to remove both Caps_Lock and Control_L modifier mappings
+! because xmodmap won't remap to the new keycode if the mapping already
+! exists (I think).
+
+remove Lock = Caps_Lock
+remove Control = Control_L
+
+keycode 66 = Control_L
+keycode 9 = Caps_Lock
+keycode 37 = Escape
+
+add Lock = Caps_Lock
+add Control = Control_L

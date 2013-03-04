@@ -36,13 +36,15 @@ filetype plugin indent on
 " Tab settings
 set expandtab
 set tabstop=4
-set softtabstop=4
 set shiftwidth=4
 set shiftround     " indent to a multiple of shiftwidth
 
 " Show matching brackets.
 set showmatch
 set mat=5  " for half a sec
+
+set scrolloff=1
+set display+=lastline
 
 " Flexible backspace: allow backspacing over autoindent, line breaks, start of
 " insert.
@@ -157,7 +159,17 @@ nnoremap <silent> <F7> :set nowrap!<cr>
 
 " Clear search highlights
 nnoremap <silent> <leader>h :nohlsearch<cr>
+"   From sensible.vim (github.com/tpope/vim-sensible)
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+endif
 
+" Other mappings from sensible.vim
+inoremap <C-U> <C-G>u<C-U>
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+" Make Y consistent with C and D.  See :help Y.
+nnoremap Y y$
 
 " ======================= Functions and Commands =======================
 

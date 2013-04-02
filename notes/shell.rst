@@ -20,3 +20,8 @@ so that the count comes at the beginning in order to sort them with
 `sort`::
 
     cat counts | sed 's/^\(.*\)[\t ]\([0-9]\+\)$/\2 \1/' | sort -nr >sorted_counts
+
+
+To find files that contain non-ASCII characters::
+
+    LANG=C grep ‘[^ -~]‘ -r train | head

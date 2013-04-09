@@ -43,6 +43,8 @@ My `.vimrc` is constantly evolving. Here is a list of the plugins I use:
 
 - vim-surround http://github.com/tpope/vim-surround/
 
+- vim-tbone http://github.com/tpope/vim-tbone/
+
 - vim-unicycle http://github.com/cordarei/UniCycle/
 
 - vim-unimpaired http://github.com/tpope/vim-unimpaired/

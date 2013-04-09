@@ -124,9 +124,8 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>s :s/
 nnoremap <leader>S :%s/
 
-" shortcuts to enable/disable UniCycle plugin
-nnoremap <leader>u :UniCycleOn<cr>
-nnoremap <leader>U :UniCycleOff<cr>
+" Toggle UniCycle plugin
+nnoremap <C-u><C-u> :UniCycleToggle
 
 " Unite shortcuts
 nnoremap <C-u><C-f> :Unite file<cr>
@@ -157,9 +156,7 @@ set pastetoggle=<F6>
 " Use F7 to toggle line wrapping
 nnoremap <silent> <F7> :set nowrap!<cr>
 
-" Clear search highlights
-nnoremap <silent> <leader>h :nohlsearch<cr>
-"   From sensible.vim (github.com/tpope/vim-sensible)
+" From sensible.vim (github.com/tpope/vim-sensible)
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 endif

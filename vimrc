@@ -125,7 +125,7 @@ nnoremap <leader>s :s/
 nnoremap <leader>S :%s/
 
 " Toggle UniCycle plugin
-nnoremap <C-u><C-u> :UniCycleToggle
+nnoremap <C-u><C-u> :UniCycleToggle<cr>
 
 " Unite shortcuts
 nnoremap <C-u><C-f> :Unite file<cr>

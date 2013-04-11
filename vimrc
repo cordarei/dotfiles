@@ -180,6 +180,7 @@ command! Make silent make | redraw!
 
 nnoremap <leader>m :Make<cr>
 
+command! Scratch edit ~/.vim/scratch
 
 "
 " reST

@@ -25,3 +25,27 @@ so that the count comes at the beginning in order to sort them with
 To find files that contain non-ASCII characters::
 
     LANG=C grep ‘[^ -~]‘ -r train | head
+
+
+To remove leading blank lines from a file::
+
+    sed -i '/./,$!d'
+
+**Note:** The above will not work in GNU parallel! Parallel doesn’t
+quote command arguments by default, so the ``!`` character will be
+interpreted by the subshell. You can either use the ``-q`` option to
+make parallel quote the command arguments or escape the ``!`` using a
+backslash::
+
+    parallel -q sed -i '/./,$!d' <file_list
+    # or
+    parallel sed -i '/./,$\!d' <file_list
+
+The parallel documentation recommends against using ``-q`` because it
+prevents the subshell from interpreting characters that you may *want*
+it to interpret, so escaping characters is preferred.
+
+Alternatively, xargs apparently does quote its arguments, so the command
+below works::
+
+    xargs sed -i -e '/./,$!d' <file_list

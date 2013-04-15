@@ -106,6 +106,7 @@ let g:html5_aria_attributes_complete = 0
 
 " Set leader to comma.
 let mapleader = ","
+let maplocalleader = ","
 
 " Command mode without Shift
 nnoremap ; :

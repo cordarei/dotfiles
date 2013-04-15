@@ -134,6 +134,11 @@ nnoremap <C-u><C-b> :Unite buffer<cr>
 " VimFiler
 nnoremap <leader>f :VimFilerExplorer<cr>
 
+" fugitive maps
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gc :Gcommit<cr>
+
 " unbind annoying default command
 nnoremap s <Nop>
 
@@ -142,6 +147,17 @@ nnoremap <leader>n :bn<cr>
 nnoremap <leader>p :bp<cr>
 nnoremap <leader>l :b#<cr>
 nnoremap <leader>k :BD<cr>
+
+" tab navigation keys
+nnoremap <leader>tn :tabnew<cr>
+nnoremap <leader>ts :tab split<cr>
+nnoremap <leader>th :tab help<Space>
+nnoremap <leader>tc :tabclose<bar>tabprevious<cr>
+nnoremap <leader>tgs :tab split<bar>Gstatus<bar>on<cr>
+nnoremap <leader>tgd :tab split<bar>Gdiff<cr>
+nnoremap <leader>tm :tabm<cr>
+nnoremap <leader>tml :tabm -1<cr>
+nnoremap <leader>tmr :tabm +1<cr>
 
 " quick turn off diff-mode
 nnoremap <leader>do :diffoff<cr>

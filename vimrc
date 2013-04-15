@@ -142,7 +142,7 @@ nnoremap <leader>gc :Gcommit<cr>
 " make fugitive more convenient with tabs
 nnoremap <leader>tgs :tab split<bar>Gstatus<bar>on<cr>
 nnoremap <leader>tgd :tab split<bar>Gdiff<cr>
-nnoremap <leader>tgc :tab split<bar>execute 'Gcommit'<bar>silent! on<cr>
+nnoremap <leader>tgc :tab split<bar>execute 'Gcommit -v'<bar>silent! on<cr>
 
 " unbind annoying default command
 nnoremap s <Nop>

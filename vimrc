@@ -142,7 +142,8 @@ nnoremap <leader>gc :Gcommit<cr>
 " make fugitive more convenient with tabs
 nnoremap <leader>tgs :tab split<bar>Gstatus<bar>on<cr>
 nnoremap <leader>tgd :tab split<bar>Gdiff<cr>
-nnoremap <leader>tgc :tab split<bar>execute 'Gcommit -v'<bar>silent! on<cr>
+nnoremap <leader>tgc :tab split<bar>execute 'Gcommit -v'<bar>
+            \ silent! on<cr>
 
 " unbind annoying default command
 nnoremap s <Nop>
@@ -152,6 +153,7 @@ nnoremap <leader>n :bn<cr>
 nnoremap <leader>p :bp<cr>
 nnoremap <leader>l :b#<cr>
 nnoremap <leader>k :BD<cr>
+nnoremap <leader>K :BD!<cr>
 
 " tab navigation keys
 nnoremap <leader>tn :tabnew<cr>
@@ -168,12 +170,6 @@ nnoremap <leader>dwo <c-w>o:diffoff<cr>
 
 " repeat command over visual selection
 vnoremap . :normal .<cr>
-
-"set key to toggle paste mode
-set pastetoggle=<F6>
-
-" Use F7 to toggle line wrapping
-nnoremap <silent> <F7> :set nowrap!<cr>
 
 " From sensible.vim (github.com/tpope/vim-sensible)
 if maparg('<C-L>', 'n') ==# ''
@@ -192,7 +188,7 @@ nnoremap Y y$
 " Convenient command to see the difference between the current buffer
 " and the file it was loaded from, thus the changes you made.
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-                \ | wincmd p | diffthis
+            \ | wincmd p | diffthis
 
 " call make silently and redraw the screen afterward
 command! Make silent make | redraw!

@@ -200,35 +200,3 @@ command! Make silent make | redraw!
 nnoremap <leader>m :Make<cr>
 
 command! Scratch edit ~/.vim/scratch
-
-"
-" reST
-" TODO: consider a plugin
-"
-
-" Get a character from the user
-function! InChr()
-  let c = getchar()
-  if c =~ '^\d\+$'
-    let c = nr2char(c)
-  endif
-  return c
-endfunction
-
-" Transform the current line into a reST section header
-function! RstHead(chr, above)
-    let c = substitute(a:chr, "&", "\\\\&", "") " fix ampersand
-    let savereg = @@
-    normal! mqyy
-    let @@ = substitute(@@, ".", c, "g")
-    let @@ = substitute(@@, ".$", "", "")
-    if (a:above)
-        execute "normal! O\<esc>pj"
-    endif
-    execute "normal! o\<esc>"
-    normal! p`q
-    let @@ = savereg
-endfunction
-
-autocmd FileType rst nnoremap <silent> <leader>rh :call RstHead(InChr(), 0)<cr>
-autocmd FileType rst nnoremap <silent> <leader>rt :call RstHead(InChr(), 1)<cr>

@@ -61,3 +61,6 @@
 [submodule "vim/bundle/vim-tbone"]
 	path = vim/bundle/vim-tbone
 	url = git://github.com/tpope/vim-tbone.git
+[submodule "vim/bundle/vim-arresting"]
+	path = vim/bundle/vim-arresting
+	url = git://github.com/cordarei/vim-arresting.git

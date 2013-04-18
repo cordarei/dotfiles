@@ -54,11 +54,14 @@ set backspace=indent,eol,start
 set hidden
 
 " File-specific settings
-autocmd FileType make setlocal noexpandtab
-autocmd FileType gitconfig setlocal noexpandtab
-autocmd BufRead gitconfig setlocal filetype=gitconfig
-autocmd FileType rst setlocal tw=72
-autocmd FileType python setlocal tw=80 fo+=croq
+augroup MyAutoCmds
+  autocmd!
+  autocmd FileType make setlocal noexpandtab
+  autocmd FileType gitconfig setlocal noexpandtab
+  autocmd BufRead gitconfig setlocal filetype=gitconfig
+  autocmd FileType rst setlocal tw=72
+  autocmd FileType python setlocal tw=80 fo+=croq
+augroup END
 
 set ruler
 
@@ -67,7 +70,7 @@ set hlsearch
 
 " No bell
 set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
+autocmd MyAutoCmds GUIEnter * set visualbell t_vb=
 
 " Don't set the window title
 set notitle
@@ -87,7 +90,7 @@ set nowritebackup
 set noswapfile
 
 " enable UniCycle plugin automatically for rst files
-autocmd FileType rst UniCycleOn
+autocmd MyAutoCmds FileType rst UniCycleOn
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1

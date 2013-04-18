@@ -1,4 +1,4 @@
-" vim: set tw=72:
+" vim: set tw=72 sw=2 ts=2 et:
 
 
 " =========================== Initialization ===========================
@@ -143,7 +143,7 @@ nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>tgs :tab split<bar>Gstatus<bar>on<cr>
 nnoremap <leader>tgd :tab split<bar>Gdiff<cr>
 nnoremap <leader>tgc :tab split<bar>execute 'Gcommit -v'<bar>
-            \ silent! on<cr>
+      \ silent! on<cr>
 
 " unbind annoying default command
 nnoremap s <Nop>
@@ -188,7 +188,7 @@ nnoremap Y y$
 " Convenient command to see the difference between the current buffer
 " and the file it was loaded from, thus the changes you made.
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-            \ | wincmd p | diffthis
+      \ | wincmd p | diffthis
 
 " call make silently and redraw the screen afterward
 command! Make silent make | redraw!

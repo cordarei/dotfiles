@@ -64,3 +64,6 @@
 [submodule "vim/bundle/vim-arresting"]
 	path = vim/bundle/vim-arresting
 	url = git://github.com/cordarei/vim-arresting.git
+[submodule "vim/bundle/vim-scala"]
+	path = vim/bundle/vim-scala
+	url = git://github.com/derekwyatt/vim-scala.git

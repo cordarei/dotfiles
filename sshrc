@@ -1,5 +1,5 @@
 #!/bin/sh
 
 if test "$SSH_AUTH_SOCK"; then
-  ln -sf "$SSH_AUTH_SOCK" "~/.ssh/auth-sock.$HOST"
+  ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/auth-sock.$(hostname)"
 fi

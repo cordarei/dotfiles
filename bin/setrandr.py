@@ -1,0 +1,105 @@
+#!/usr/bin/env python
+
+
+import itertools as it
+import json
+import os
+import re
+
+
+def _isiter(o):
+    try:
+        iter(o)
+        return True
+    except TypeError:
+        return False
+
+
+class StructureMatcher(object):
+    def __init__(self, data):
+        self.lines = None
+        if isinstance(data, str):
+            self.lines = data.split('\n')
+        else:
+            assert(_isiter(data))
+            self.lines = list(data)
+        self.length = len(self.lines)
+
+    def index(self, pred, start=0):
+        try:
+            return next(i+start for i,l in enumerate(self.lines[start:]) if pred(l))
+        except StopIteration:
+            return len(self.lines)
+
+    def range(self, begin, end=None):
+        if isinstance(begin, str):
+            pat = re.compile(begin)
+            begin = self.index(lambda l: pat.search(l))
+        assert(isinstance(begin, int))
+        if end is None:
+            end = len(self.lines)
+        elif isinstance(end, str):
+            pat = re.compile(end)
+            end = self.index(lambda l: pat.search(l))
+        assert(isinstance(end, int))
+        return StructureMatcher(self.lines[begin:end])
+
+    def split(self, pat):
+        pat = re.compile(pat)
+        i = self.index(lambda l: pat.search(l))
+        while i < len(self.lines):
+            j = self.index(lambda l: pat.search(l), start=i+1)
+            yield self.range(i, j)
+            i = j
+
+
+OUTPUT_TYPES = ('HDMI', 'VGA', 'LVDS', 'DP')
+
+
+def list_outputs():
+    def _parse_res_line(line):
+        x, y = re.match('^\s+(\d+)x(\d+)\s', line).group(1,2)
+        return (int(x), int(y))
+
+    from subprocess import Popen, PIPE
+    p = Popen('xrandr', stdout=PIPE, stderr=PIPE)
+    (out, err) = p.communicate()
+
+    print("Found outputs:")
+    disps = []
+    for sm in StructureMatcher(out.decode()).range(1).split('^[A-Z]+\d'):
+        pat = re.compile('^([A-Z]+)(\d*)\s(\w+)')
+        (disp, num, con) = pat.match(sm.lines[0]).group(1, 2, 3)
+        assert(disp in OUTPUT_TYPES)
+        rs = []
+        if con == 'connected':
+            rs = [_parse_res_line(l) for l in sm.lines[1:]]
+            disps.append((disp, disp + num, rs))
+        print(disp + num + ' ' + ','.join(str(t) for t in rs))
+
+    return disps
+
+def set_output(active_name, res, other_names):
+    from subprocess import Popen, PIPE
+    args = ['xrandr']
+    args += ['--output', active_name, '--mode', '{}x{}'.format(*res[0])]
+    for on in other_names:
+        args += ['--output', on, '--off']
+
+    print("Running command:")
+    print(' '.join(args))
+
+    p = Popen(args, stdout=PIPE, stderr=PIPE)
+    (out, err) = p.communicate()
+
+
+def main():
+    ds = list_outputs()
+    for ot in OUTPUT_TYPES:
+        for d in ds:
+            if d[0] == ot:
+                set_output(d[1], d[2], [e[1] for e in ds if e[1] != d[1]])
+                return
+
+if __name__ == '__main__':
+    main()

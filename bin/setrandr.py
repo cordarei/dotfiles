@@ -58,7 +58,7 @@ OUTPUT_TYPES = ('HDMI', 'VGA', 'LVDS', 'DP')
 
 def list_outputs():
     def _parse_res_line(line):
-        x, y = re.match('^\s+(\d+)x(\d+)\s', line).group(1,2)
+        x, y = re.match('^\s+(\d+)x(\d+)i?\s', line).group(1,2)
         return (int(x), int(y))
 
     from subprocess import Popen, PIPE

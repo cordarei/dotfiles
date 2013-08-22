@@ -18,12 +18,8 @@ syntax on
 " Use dark background
 set background=dark
 
-" Settings for the solarized colorscheme
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-
-" Use solarized colorscheme
-colorscheme solarized
+" Set colorscheme
+colorscheme jellybeans
 
 " Settings for python syntax highlighting
 let g:python_highlight_all=1

@@ -145,7 +145,10 @@ nnoremap <leader>tgc :tab split<bar>execute 'Gcommit -v'<bar>
       \ silent! on<cr>
 
 " unbind annoying default command
-nnoremap s <Nop>
+map s <Nop>
+nmap sw ysiw
+nmap sW ysiW
+nmap S ds
 
 " quicker(?) keys for buffer navigation
 nnoremap <leader>n :bn<cr>

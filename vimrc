@@ -57,6 +57,7 @@ augroup MyAutoCmds
   autocmd BufRead gitconfig setlocal filetype=gitconfig
   autocmd FileType rst setlocal tw=72
   autocmd FileType python setlocal tw=80 fo+=croq
+  autocmd FileType zsh,sh,bash setlocal sw=2 ts=2 tw=72
 augroup END
 
 set ruler

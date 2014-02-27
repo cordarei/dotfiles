@@ -12,7 +12,7 @@ do
     (cd ~; ln -T -s -f "${pdir}/${target}" ".${target}")
 done
 
-for target in zshenv zshrc zpreztorc zlogin
+for target in zshenv zshrc zpreztorc zlogin zprofile
 do
     (cd ~; ln -T -s -f "${pdir}/prezto/runcoms/${target}" ".${target}")
 done

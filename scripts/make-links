@@ -7,7 +7,7 @@ dir="$(cd $dir; pwd)"
 reldir="${dir#${home}/}"
 pdir="$(dirname $reldir)"
 
-for target in vimrc gvimrc vim tmux.conf gitconfig ctags
+for target in vimrc gvimrc vim tmux.conf gitconfig ctags emacs.d
 do
     (cd ~; ln -T -s -f "${pdir}/${target}" ".${target}")
 done

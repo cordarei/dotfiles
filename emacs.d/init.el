@@ -19,7 +19,16 @@
 (require 'evil)
 (evil-mode t)
 
+
+(global-set-key [M-kanji] 'ignore)
+(global-set-key [kanji] 'ignore)
+
+(define-key key-translation-map [?\C-h] [?\C-?])
+(global-set-key (kbd "M-h") 'help-command)
+
+
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+
 
 (load-theme 'monokai t)

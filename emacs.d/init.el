@@ -26,6 +26,7 @@
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "M-h") 'help-command)
 
+(setq make-backup-files nil)
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)

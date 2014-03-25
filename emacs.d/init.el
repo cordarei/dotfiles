@@ -45,15 +45,15 @@
 ;; set up interface customizations
 
 ;; behavior:
-
+;;  disable auto-save and backup files
+(setq auto-save-default nil)
 (setq make-backup-files nil)
 
 ;; keybindings:
-
-;; for Windows
+;;  for Windows
 (global-set-key [M-kanji] 'ignore)
 (global-set-key [kanji] 'ignore)
-
+;;  map C-h to backspace
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "M-h") 'help-command)
 

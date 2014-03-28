@@ -6,6 +6,8 @@
 ;; add extra ELPA archives
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+	     '("org" . "http://orgmode.org/elpa/") t)
 
 ;; initialize package system
 (package-initialize)
@@ -40,6 +42,11 @@
   :ensure monokai-theme
   :config
   (progn (load-theme 'monokai t)))
+
+;; org-mode
+(use-package org
+  :ensure org
+  :defer t)
 
 
 ;; set up interface customizations

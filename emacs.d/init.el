@@ -1,4 +1,22 @@
-;; setup for requiring and installing packages
+;;; init.el
+
+
+;;;; startup customization -- run first to reduce flicker etc
+
+;; remove GUI stuff
+(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+;; disable bell
+(setq ring-bell-function 'ignore)
+
+;; show blank *scratch* buffer at start
+(setq inhibit-startup-screen t)
+(setq initial-scratch-message nil)
+
+
+;;;; package setup
 
 (require 'cl)
 (require 'package)
@@ -26,6 +44,12 @@
 
 ;; set up individual packages
 
+;; monokai theme
+(use-package monokai-theme
+  :ensure monokai-theme
+  :config
+  (progn (load-theme 'monokai t)))
+
 ;; evil-mode
 (use-package evil
   :ensure evil
@@ -37,34 +61,28 @@
   :ensure markdown-mode
   :commands markdown-mode)
 
-;; monokai theme
-(use-package monokai-theme
-  :ensure monokai-theme
-  :config
-  (progn (load-theme 'monokai t)))
-
 ;; org-mode
 (use-package org
   :ensure org
   :defer t)
 
 
-;; set up interface customizations
+;;;; behavior custimization
 
-;; behavior:
 ;;  disable auto-save and backup files
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
-;; keybindings:
+
+;;;; keybindings
+
 ;;  for Windows
 (global-set-key [M-kanji] 'ignore)
 (global-set-key [kanji] 'ignore)
+
 ;;  map C-h to backspace
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "M-h") 'help-command)
 
-;; GUI settings:
 
-(tool-bar-mode -1)
-(menu-bar-mode -1)
+;;; end of init.el

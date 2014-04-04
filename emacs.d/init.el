@@ -64,10 +64,16 @@
 ;; org-mode
 (use-package org
   :ensure org
-  :defer t)
+  :commands org-mode
+  :config
+  (progn
+    (setq org-agenda-files (list "~/Wiki/index.org"))
+    (setq org-log-done t)
+    (setq org-agenda-span 'month)
+    (define-key global-map (kbd "C-c a") 'org-agenda)))
 
 
-;;;; behavior custimization
+;;;; behavior customization
 
 ;;  disable auto-save and backup files
 (setq auto-save-default nil)

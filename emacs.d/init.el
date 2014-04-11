@@ -72,6 +72,10 @@
     (setq org-agenda-span 'month)
     (define-key global-map (kbd "C-c a") 'org-agenda)))
 
+;;julia-mode
+(use-package julia-mode
+  :load-path "~/.emacs.d/elisp/"
+  :mode "\\.jl\\'")
 
 ;;;; behavior customization
 
@@ -89,6 +93,3 @@
 ;;  map C-h to backspace
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "M-h") 'help-command)
-
-
-;;; end of init.el

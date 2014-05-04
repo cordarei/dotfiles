@@ -45,16 +45,26 @@
 ;; set up individual packages
 
 ;; monokai theme
-(use-package monokai-theme
-  :ensure monokai-theme
+;; (use-package monokai-theme
+;;   :ensure monokai-theme
+;;   :config
+;;   (progn (load-theme 'monokai t)))
+
+;; zenburn theme
+(use-package zenburn-theme
+  :ensure zenburn-theme
   :config
-  (progn (load-theme 'monokai t)))
+  (progn (load-theme 'zenburn t)))
 
 ;; evil-mode
 (use-package evil
   :ensure evil
   :config
-  (progn (evil-mode 1)))
+  (progn
+    (evil-mode 1)
+    (define-key evil-normal-state-map "gol" 'whitespace-mode)
+    (define-key evil-normal-state-map "gow" 'toggle-truncate-lines)
+    ))
 
 ;; markdown-mode
 (use-package markdown-mode
@@ -67,7 +77,8 @@
   :commands org-mode
   :config
   (progn
-    (setq org-agenda-files (list "~/Wiki/index.org"))
+    (setq org-startup-indented t)
+    (setq org-agenda-files (list "~/Org/"))
     (setq org-log-done t)
     (setq org-agenda-span 'month)
     (define-key global-map (kbd "C-c a") 'org-agenda)))
@@ -83,6 +94,9 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
+;; whitespace
+(setq-default show-trailing-whitespace t)
+
 
 ;;;; keybindings
 
@@ -93,3 +107,7 @@
 ;;  map C-h to backspace
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "M-h") 'help-command)
+
+;;;; keep separate custom file
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)

@@ -62,6 +62,7 @@
   :config
   (progn
     (evil-mode 1)
+    (define-key evil-normal-state-map (kbd "C-w q") 'evil-quit)
     (define-key evil-normal-state-map "gol" 'whitespace-mode)
     (define-key evil-normal-state-map "gow" 'toggle-truncate-lines)
     ))
@@ -87,6 +88,7 @@
 (use-package julia-mode
   :load-path "~/.emacs.d/elisp/"
   :mode "\\.jl\\'")
+
 
 ;;;; behavior customization
 

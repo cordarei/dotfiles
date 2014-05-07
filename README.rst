@@ -11,17 +11,24 @@ Tmux.
 Vim
 ===
 
-My `.vimrc` is constantly evolving. Here is a list of the plugins I use:
+My `.vimrc` is constantly evolving. Here is a list of the plugins I have
+installed:
 
 - bufkill http://github.com/vim-scripts/bufkill.vim/
 
 - html5 https://github.com/othree/html5.vim
+
+- jellybeans.vim https://github.com/nanotech/jellybeans.vim
+
+- julia.vim http://github.com/JuliaLang/julia-vim
 
 - neocomplcache https://github.com/Shougo/neocomplcache
 
 - tabular http://github.com/godlygeek/tabular/
 
 - unite https://github.com/Shougo/unite.vim
+
+- vim-arresting http://github.com/cordarei/vim-arresting
 
 - vim-colors-solarized http://github.com/altercation/vim-colors-solarized/
 
@@ -30,6 +37,8 @@ My `.vimrc` is constantly evolving. Here is a list of the plugins I use:
 - vim-cpp (forked from google.vim) http://github.com/cordarei/vim-cpp/
 
 - vim-distinguished http://github.com/Lokaltog/vim-distinguished/
+
+- vimfiler https://github.com/Shougo/vimfiler
 
 - vim-fugitive http://github.com/tpope/vim-fugitive/
 
@@ -41,6 +50,8 @@ My `.vimrc` is constantly evolving. Here is a list of the plugins I use:
 
 - vim-repeat http://github.com/tpope/vim-repeat/
 
+- vim-scala http://github.com/derekwyatt/vim-scala
+
 - vim-surround http://github.com/tpope/vim-surround/
 
 - vim-tbone http://github.com/tpope/vim-tbone/
@@ -50,8 +61,6 @@ My `.vimrc` is constantly evolving. Here is a list of the plugins I use:
 - vim-unimpaired http://github.com/tpope/vim-unimpaired/
 
 - vim-vividchalk http://github.com/tpope/vim-vividchalk/
-
-- vimfiler https://github.com/Shougo/vimfiler
 
 
 Zsh

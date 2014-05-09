@@ -46,19 +46,19 @@
 
 ;; monokai theme
 ;; (use-package monokai-theme
-;;   :ensure monokai-theme
+;;   :ensure t
 ;;   :config
 ;;   (progn (load-theme 'monokai t)))
 
 ;; zenburn theme
 (use-package zenburn-theme
-  :ensure zenburn-theme
+  :ensure t
   :config
   (progn (load-theme 'zenburn t)))
 
 ;; evil-mode
 (use-package evil
-  :ensure evil
+  :ensure t
   :config
   (progn
     (evil-mode 1)
@@ -73,12 +73,12 @@
 
 ;; markdown-mode
 (use-package markdown-mode
-  :ensure markdown-mode
+  :ensure t
   :commands markdown-mode)
 
 ;; org-mode
 (use-package org
-  :ensure org
+  :ensure t
   :commands org-mode
   :config
   (progn
@@ -107,7 +107,7 @@
   :mode "\\.jl\\'")
 
 (use-package clojure-mode
-  :ensure clojure-mode
+  :ensure t
   :commands clojure-mode)
 
 ;;;; behavior customization

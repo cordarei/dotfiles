@@ -84,6 +84,7 @@
   (progn
     ;; configure general org-mode behavior
     (setq org-startup-indented t)
+    (setq org-startup-folded 'content)
     ;(setq org-cycle-separator-lines 1)
 
     ;; configure org-agenda

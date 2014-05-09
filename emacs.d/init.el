@@ -110,6 +110,11 @@
   :ensure t
   :commands clojure-mode)
 
+(use-package magit
+  :ensure t
+  :commands magit-status)
+
+
 ;;;; behavior customization
 
 ;;  disable auto-save and backup files

@@ -97,9 +97,17 @@
     (org-babel-do-load-languages 'org-babel-load-languages
 				 '((emacs-lisp . t)
 				   (clojure . t)
-				   (python . t)))
+				   (python . t)
+				   (sh . t)))
     (setq org-src-fontify-natively t)
     (setq org-src-preserve-indentation t)
+
+    (defun my-org-confirm-babel-evaluate (lang body)
+      (string-prefix-p
+       (expand-file-name "~/Repos/organized-chaos/")
+       buffer-file-truename))
+    (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+
     ))
 
 ;;julia-mode

@@ -15,6 +15,9 @@
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 
+;; prefer UTF-8 -- to force UTF-8 you should customize
+;; `file-coding-system-alist'.
+(prefer-coding-system 'utf-8)
 
 ;;;; package setup
 
@@ -108,6 +111,7 @@
        buffer-file-truename))
     (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 
+    (setq org-export-html-coding-system 'utf-8)
     ))
 
 ;;julia-mode
@@ -124,6 +128,9 @@
   :commands magit-status
   :bind ("C-x g" . magit-status))
 
+(use-package unicycle-mode
+  :load-path "~/.emacs.d/elisp/"
+  :bind ("C-c C-u" . unicycle-mode))
 
 ;;;; behavior customization
 

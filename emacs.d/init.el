@@ -68,6 +68,7 @@
     (define-key evil-normal-state-map (kbd "C-w q") 'evil-quit)
     (define-key evil-normal-state-map "gol" 'whitespace-mode)
     (define-key evil-normal-state-map "gow" 'toggle-truncate-lines)
+    (define-key evil-normal-state-map "gou" 'unicycle-mode)
 
     (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
     (define-key evil-insert-state-map (kbd "C-p") nil)

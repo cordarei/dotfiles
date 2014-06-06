@@ -115,6 +115,12 @@
     (setq org-export-html-coding-system 'utf-8)
     ))
 
+(use-package tex
+  :mode ("\\.tex\\'" . latex-mode)
+  :ensure auctex)
+(use-package reftex
+  :ensure t)
+
 ;;julia-mode
 (use-package julia-mode
   :load-path "~/.emacs.d/elisp/"

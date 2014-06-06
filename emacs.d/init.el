@@ -132,6 +132,10 @@
   :load-path "~/.emacs.d/elisp/"
   :bind ("C-c C-u" . unicycle-mode))
 
+(use-package gnuplot
+  :ensure t
+  :commands gnuplot-mode)
+
 ;;;; behavior customization
 
 ;;  disable auto-save and backup files

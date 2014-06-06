@@ -97,22 +97,30 @@
     (setq org-agenda-span 'month)
     (define-key global-map (kbd "C-c a") 'org-agenda)
 
+    ;; configure latex export
+    (setq org-latex-pdf-process
+	  '("latexmk -c" "latexmk -g -xelatex %f"))
+
     ;; org-babel for literate programming
     (org-babel-do-load-languages 'org-babel-load-languages
 				 '((emacs-lisp . t)
 				   (clojure . t)
 				   (python . t)
-				   (sh . t)))
+				   (sh . t)
+				   (gnuplot . t)))
     (setq org-src-fontify-natively t)
     (setq org-src-preserve-indentation t)
 
-    (defun my-org-confirm-babel-evaluate (lang body)
-      (string-prefix-p
-       (expand-file-name "~/Repos/organized-chaos/")
-       buffer-file-truename))
-    (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+    ;; (defun my-org-confirm-babel-evaluate (lang body)
+    ;;   (string-prefix-p
+    ;;    (expand-file-name "~/Repos/organized-chaos/")
+    ;;    (or buffer-file-truename "")))
+    ;; (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 
     (setq org-export-html-coding-system 'utf-8)
+    (setq org-export-babel-evaluate nil)
+
+    (use-package htmlize :ensure t)
     ))
 
 (use-package tex

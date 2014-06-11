@@ -19,6 +19,12 @@
 ;; `file-coding-system-alist'.
 (prefer-coding-system 'utf-8)
 
+;; set user directories according to system type
+(setq dir/home (cond ((eq system-type 'windows-nt)
+		      (getenv "USERPROFILE"))
+		     (t
+		      (expand-file-name "~"))))
+
 ;;;; package setup
 
 (require 'cl)

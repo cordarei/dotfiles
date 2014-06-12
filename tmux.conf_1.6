@@ -1,0 +1,50 @@
+##
+# Set Escape Prefix to Ctrl-T
+set -g prefix C-t
+unbind C-b
+bind-key t send-prefix
+
+##
+# global settings (utf8,vi-mode,terminal etc)
+set -g default-terminal "screen-256color"
+set -g status-utf8 on
+set -g bell-action none
+set -g visual-bell off
+setw -g utf8 on
+setw -g mode-keys vi
+setw -g automatic-rename off
+setw -g monitor-activity on
+setw -g aggressive-resize on
+
+##
+# status bar
+set -g status-bg black
+set -g status-fg white
+set -g status-left '#[fg=green][ #[fg=yellow]#H#[fg=green] ][ '
+set -g status-right '#[fg=green] ][ #[fg=yellow]%k:%M %F#[fg=green] ]'
+setw -g window-status-current-bg red
+
+##
+# Key Bindings
+bind C-c new-window
+bind C-t last-window
+bind-key -n F2 new-window
+bind-key -n F3 previous-window
+bind-key -n F4 next-window
+
+bind-key -n F9 select-pane -t :.-
+bind-key -n F10 select-pane -t :.+
+
+bind-key h select-pane -R
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -L
+
+unbind %
+bind | split-window -h
+bind - split-window -v
+
+bind -r Up resize-pane -U
+bind -r Down resize-pane -D
+bind -r Left resize-pane -L
+bind -r Right resize-pane -R

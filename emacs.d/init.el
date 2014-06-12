@@ -25,6 +25,13 @@
 		     (t
 		      (expand-file-name "~"))))
 
+(setq dir/org (expand-file-name
+	       (cond ((eq system-type 'windows-nt)
+		      "Documents/Org")
+		     (t
+		      "Org"))
+	       dir/home))
+
 ;;;; package setup
 
 (require 'cl)
@@ -96,11 +103,13 @@
     (setq org-startup-indented t)
     (setq org-startup-folded 'content)
     ;(setq org-cycle-separator-lines 1)
+    (setq org-directory dir/org)
 
     ;; configure org-agenda
-    (setq org-agenda-files (list "~/Org/"))
+    (setq org-agenda-files (list "agenda.org"))
     (setq org-log-done t)
     (setq org-agenda-span 'month)
+    (setq org-agenda-window-setup 'current-window)
     (define-key global-map (kbd "C-c a") 'org-agenda)
 
     ;; configure latex export

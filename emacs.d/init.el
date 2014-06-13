@@ -149,6 +149,10 @@
   :load-path "~/.emacs.d/elisp/"
   :mode "\\.jl\\'")
 
+(use-package python
+  :commands python-mode
+  :mode ("wscript\\'" . python-mode))
+
 (use-package clojure-mode
   :ensure t
   :commands clojure-mode)

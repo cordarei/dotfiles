@@ -60,6 +60,18 @@
 	   (insert #x2026)) ; HORIZONTAL ELLIPSIS (…)
 	  (t (insert ?.)))))
 
+(defun unicycle/greater-than ()
+  "translate <> to ◊"
+  (interactive)
+  (let ((prev (char-before)))
+    (cond ((eq prev ?<)
+	   (delete-char -1)
+	   (insert #x25CA)) ; LOZENGE (◊)
+	  ((eq prev ?>)
+	   (delete-char -1)
+	   (insert #xBB)) ; RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (»)
+	  (t (insert ?>)))))
+
 
 (define-minor-mode unicycle-mode
   "Cycle through typographical punctuation when pressing keys like ‘-’"
@@ -69,6 +81,7 @@
 	    (define-key map [?'] 'unicycle/apostrophe)
 	    (define-key map [?\"] 'unicycle/double-quote)
 	    (define-key map [?.] 'unicycle/period)
+	    (define-key map [?>] 'unicycle/greater-than)
 	    map))
 
 

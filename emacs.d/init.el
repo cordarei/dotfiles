@@ -20,17 +20,35 @@
 (prefer-coding-system 'utf-8)
 
 ;; set user directories according to system type
-(setq dir/home (cond ((eq system-type 'windows-nt)
-		      (getenv "USERPROFILE"))
-		     (t
-		      (expand-file-name "~"))))
+
+(defun windows-p ()
+  (eq system-type 'windows-nt))
+
+(defun add-to-path-string (dir path)
+  (if (string-equal "" (or path ""))
+      dir
+    (concat dir path-separator path)))
+
+(defun add-to-exec-path (dir)
+  (setenv "PATH"
+	  (add-to-path-string
+	   (expand-file-name dir "~")
+	   (getenv "PATH")))
+  (add-to-list 'exec-path dir))
+
+(unless (windows-p)
+  (add-to-exec-path (expand-file-name ".local/bin" "~")))
+
+(setq dir/home (if (windows-p)
+		   (getenv "USERPROFILE")
+		 (expand-file-name "~")))
 
 (setq dir/org (expand-file-name
-	       (cond ((eq system-type 'windows-nt)
-		      "Documents/Org")
-		     (t
-		      "Org"))
+	       (if (windows-p)
+		   "Documents/Org"
+		 "Org")
 	       dir/home))
+
 
 ;;;; package setup
 
@@ -56,7 +74,6 @@
 
 ;; make use-package available
 (require 'use-package)
-
 
 ;; set up individual packages
 
@@ -86,6 +103,13 @@
     (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
     (define-key evil-insert-state-map (kbd "C-p") nil)
     (define-key evil-insert-state-map (kbd "C-n") nil)
+    ))
+
+;; eshell
+(use-package eshell
+  :defer t
+  :init
+  (progn
     ))
 
 ;; markdown-mode
@@ -155,7 +179,11 @@
 
 (use-package clojure-mode
   :ensure t
-  :commands clojure-mode)
+  :mode "\\.clj\\'")
+
+(use-package cider
+  :defer t
+  :ensure t)
 
 (use-package magit
   :ensure t

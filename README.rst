@@ -1,67 +1,47 @@
 .. vim: set tw=72 filetype=rst:
 
-====================================
-My Command-Line Environment
-====================================
+==============================
+My Computing Environment
+==============================
 
-This repository contains the customizations I use for Vim, Zsh, Git, and
+This repository contains the customizations I use for Emacs, Vim, Zsh, Git, and
 Tmux.
+
+
+Permissions
+===========
+
+This repo is a collection of configuration files and scripts put together
+largely from code snippets from around the web; to the extent that I authored
+these files, I hereby dedicate them to the public domain through the `CC0
+dedication`_. See the link or the file COPYING for the full dedication.
+
+As an exception, ``emacs.d/elisp/julia-mode.el`` is NOT written by me; it
+is included from the Julia_ project which is released under the MIT license.
+Copyright information for submodules may be found at their various
+repositories on GitHub.
+
+.. _`CC0 dedication`: http://creativecommons.org/publicdomain/zero/1.0/
+
+.. _Julia: https://github.com/JuliaLang/julia
+
+
+Emacs
+=====
+
+See `<emacs.d/init.el>`_\ . I use Emacs with Evil_\ . I actually prefer
+Emacs to GVim now, but I still use vim when I’m in a terminal.
+
+.. _Evil: https://gitorious.org/evil/pages/Home
 
 
 Vim
 ===
 
-My `.vimrc` is constantly evolving. Here is a list of the plugins I have
-installed:
+I use Pathogen_ to load Vim plugins. I include the plugins as git submodules
+in the ``vim/bundle`` directory.
 
-- bufkill http://github.com/vim-scripts/bufkill.vim/
-
-- html5 https://github.com/othree/html5.vim
-
-- jellybeans.vim https://github.com/nanotech/jellybeans.vim
-
-- julia.vim http://github.com/JuliaLang/julia-vim
-
-- neocomplcache https://github.com/Shougo/neocomplcache
-
-- tabular http://github.com/godlygeek/tabular/
-
-- unite https://github.com/Shougo/unite.vim
-
-- vim-arresting http://github.com/cordarei/vim-arresting
-
-- vim-colors-solarized http://github.com/altercation/vim-colors-solarized/
-
-- vim-commentary https://github.com/tpope/vim-commentary
-
-- vim-cpp (forked from google.vim) http://github.com/cordarei/vim-cpp/
-
-- vim-distinguished http://github.com/Lokaltog/vim-distinguished/
-
-- vimfiler https://github.com/Shougo/vimfiler
-
-- vim-fugitive http://github.com/tpope/vim-fugitive/
-
-- vim-pathogen http://github.com/tpope/vim-pathogen/
-
-- vim-python-pep8-indent http://github.com/cordarei/vim-python-pep8-indent/
-
-- vim-python-syntax http://github.com/cordarei/vim-python-syntax/
-
-- vim-repeat http://github.com/tpope/vim-repeat/
-
-- vim-scala http://github.com/derekwyatt/vim-scala
-
-- vim-surround http://github.com/tpope/vim-surround/
-
-- vim-tbone http://github.com/tpope/vim-tbone/
-
-- vim-unicycle http://github.com/cordarei/UniCycle/
-
-- vim-unimpaired http://github.com/tpope/vim-unimpaired/
-
-- vim-vividchalk http://github.com/tpope/vim-vividchalk/
-
+.. _Pathogen: https://github.com/tpope/vim-pathogen
 
 Zsh
 ===
@@ -74,7 +54,7 @@ Oh-My-Zsh. I have my own fork with some customizations at
 Git
 ===
 
-My `.gitconfig` defines colors and my preferred editor. It also has some
+My ``.gitconfig`` defines colors and my preferred editor. It also has some
 old aliases which are obsoleted by Prezto’s git module. I have a
 git_template directory with hooks for running etags; for more info see
 `<http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html>`_\ .

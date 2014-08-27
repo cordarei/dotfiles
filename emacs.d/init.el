@@ -31,23 +31,23 @@
 
 (defun add-to-exec-path (dir)
   (setenv "PATH"
-	  (add-to-path-string
-	   (expand-file-name dir "~")
-	   (getenv "PATH")))
+          (add-to-path-string
+           (expand-file-name dir "~")
+           (getenv "PATH")))
   (add-to-list 'exec-path dir))
 
 (unless (windows-p)
   (add-to-exec-path (expand-file-name ".local/bin" "~")))
 
 (setq dir/home (if (windows-p)
-		   (getenv "USERPROFILE")
-		 (expand-file-name "~")))
+                   (getenv "USERPROFILE")
+                 (expand-file-name "~")))
 
 (setq dir/org (expand-file-name
-	       (if (windows-p)
-		   "Documents/Org"
-		 "Org")
-	       dir/home))
+               (if (windows-p)
+                   "Documents/Org"
+                 "Org")
+               dir/home))
 
 
 ;;;; package setup
@@ -59,7 +59,7 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
-	     '("org" . "http://orgmode.org/elpa/") t)
+             '("org" . "http://orgmode.org/elpa/") t)
 
 ;; initialize package system
 (package-initialize)
@@ -138,15 +138,15 @@
 
     ;; configure latex export
     (setq org-latex-pdf-process
-	  '("latexmk -c" "latexmk -g -xelatex %f"))
+          '("latexmk -c" "latexmk -g -xelatex %f"))
 
     ;; org-babel for literate programming
     (org-babel-do-load-languages 'org-babel-load-languages
-				 '((emacs-lisp . t)
-				   (clojure . t)
-				   (python . t)
-				   (sh . t)
-				   (gnuplot . t)))
+                                 '((emacs-lisp . t)
+                                   (clojure . t)
+                                   (python . t)
+                                   (sh . t)
+                                   (gnuplot . t)))
     (setq org-src-fontify-natively t)
     (setq org-src-preserve-indentation t)
 
@@ -208,8 +208,12 @@
 ;; TODO: combine this with whitespace-mode and make faces nicer
 ;; (see http://stackoverflow.com/questions/14636786/how-to-unset-the-foreground-color-of-whitespace-mode-for-emacs)
 (add-hook 'prog-mode-hook
-	  (lambda ()
-	    (setq show-trailing-whitespace t)))
+          (lambda ()
+            (setq show-trailing-whitespace t)))
+
+;; notabs
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 ;; unique buffer names
 (require 'uniquify)

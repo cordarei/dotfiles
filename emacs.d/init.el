@@ -121,10 +121,10 @@
   (progn
     ; from https://github.com/syl20bnr/spacemacs/blob/master/spacemacs/packages.el
     (setq evil-mode-line-format 'before)
-    (setq evil-emacs-state-cursor  '("red" box))
+    (setq evil-emacs-state-cursor  '("red" bar))
     (setq evil-normal-state-cursor '("orange" box))
     (setq evil-visual-state-cursor '("black" box))
-    (setq evil-insert-state-cursor '("green3" box))
+    (setq evil-insert-state-cursor '("green3" bar))
     (setq evil-motion-state-cursor '("purple" box))
     )
   :config

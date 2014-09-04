@@ -44,7 +44,7 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-  (setq sentence-end-double-space nil)
+(setq sentence-end-double-space nil)
 
 (electric-indent-mode 1)
 
@@ -294,6 +294,7 @@
 
 (use-package helm
   :ensure t
+  :diminish helm-mode
   :init
   (progn
 
@@ -359,3 +360,6 @@
   :load-path "~/.emacs.d/elisp/"
   :commands unicycle-mode
   :init (toggle/bind-key "u" 'unicycle-mode))
+
+(use-package undo-tree
+  :diminish "")

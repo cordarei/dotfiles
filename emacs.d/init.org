@@ -100,7 +100,7 @@ To really force UTF-8, you will need to customize =file-coding-alist=.
 
 *** Sentences end with a single space
 #+begin_src emacs-lisp
-  (setq sentence-end-double-space nil)
+(setq sentence-end-double-space nil)
 #+end_src
 
 *** Electrify me
@@ -452,6 +452,7 @@ See helm configs at [[https://github.com/bbatsov/prelude][Prelude]] and [[http:/
 #+begin_src emacs-lisp
 (use-package helm
   :ensure t
+  :diminish helm-mode
   :init
   (progn
 
@@ -549,4 +550,13 @@ See helm configs at [[https://github.com/bbatsov/prelude][Prelude]] and [[http:/
   :load-path "~/.emacs.d/elisp/"
   :commands unicycle-mode
   :init (toggle/bind-key "u" 'unicycle-mode))
+#+END_SRC
+
+*** Undo-Tree mode
+
+=undo-tree= is already installed and required as a dependency of some other package (org mode?), so all we do here is diminish it.
+
+#+BEGIN_SRC emacs-lisp
+(use-package undo-tree
+  :diminish "")
 #+END_SRC

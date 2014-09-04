@@ -1,31 +1,77 @@
+#+title: My Emacs Config
+#+property: header-args :tangle init.el
 
+* My Emacs Config
+
+Here is the literate version of my Emacs configuration. Everything is contained in a single org-mode file which can be tangled with =org-babel= to produce an Emacs Lisp init file.
+
+#+BEGIN_SRC emacs-lisp
 ;;;;
 ;;
 ;; This file was tangled from `init.org' using Org Babel -- see that
 ;; file for a literate version of this configuration.
 ;;
 ;;;;
+#+END_SRC
 
+
+** Startup
+*** Slim down the GUI
+
+#+BEGIN_SRC emacs-lisp
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+#+END_SRC
 
+*** Start with a blank \*scratch\* buffer
+
+#+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
+#+END_SRC
 
+*** Customize
+Keep customized settings in a separate file. Load them here to set up fonts early.
+
+#+BEGIN_SRC emacs-lisp
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
+#+END_SRC
+** General Settings
+*** This is not the bell you are looking for
 
+#+BEGIN_SRC emacs-lisp
 (setq ring-bell-function 'ignore)
+#+END_SRC
 
+*** There can be only one (file encoding)
+
+To really force UTF-8, you will need to customize =file-coding-alist=.
+
+#+BEGIN_SRC emacs-lisp
 (prefer-coding-system 'utf-8)
+#+END_SRC
 
+*** Backups? We don’t need no stinkin’ backups!
+
+#+BEGIN_SRC emacs-lisp
 (setq auto-save-default nil)
 (setq make-backup-files nil)
+#+END_SRC
 
+*** They’re against my religion
+
+#+BEGIN_SRC emacs-lisp
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+#+END_SRC
 
+*** In (white)space, no one can see you (unless you turn on =whitespace-mode=)
+
+[[http://ergoemacs.org/emacs/whitespace-mode.html][Simplify]] the display of whitespace characters in =whitespace-mode=, and show trailing whitespace in programming modes.
+
+#+BEGIN_SRC emacs-lisp
 (setq whitespace-style '(spaces tabs newline space-mark tab-mark newline-mark))
 
 (setq whitespace-display-mappings
@@ -38,19 +84,45 @@
 (add-hook 'prog-mode-hook
           (lambda ()
             (setq show-trailing-whitespace t)))
+#+END_SRC
+*** I don’t need your help (I have the [f1] key)
 
+#+BEGIN_SRC emacs-lisp
 (define-key key-translation-map [?\C-h] [?\C-?])
+#+END_SRC
 
+*** Beautiful snowflakes
+
+#+BEGIN_SRC emacs-lisp
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
+#+END_SRC
 
+*** Sentences end with a single space
+#+begin_src emacs-lisp
   (setq sentence-end-double-space nil)
+#+end_src
 
+*** Electrify me
+
+#+BEGIN_SRC emacs-lisp
 (electric-indent-mode 1)
+#+END_SRC
 
+** OS-Specific Settings and Directories
+
+On Windows, emacs (or the =runemacs.exe= binary) starts up in the folder it lives in, and the =HOME= environment variable is set to the =%APPDATA%/Roaming= folder. This is rather inconvenient, so the first thing to do is to create a new shortcut to =runemacs.exe= named ‘emacs’, and set the “Start In:” property to, say, =C:\\Users\\<username>=. This shortcut can live anywhere; I have it pinned to my taskbar. The =HOME= variable we leave alone, since it is used by Emacs to find the =.emacs.d= directory. We don’t need it anyway. For convenience we define some useful directories as constants.
+
+*** Testing OS type
+
+#+BEGIN_SRC emacs-lisp
 (defun windows-p ()
   (eq system-type 'windows-nt))
+#+END_SRC
 
+*** Path-munging functions
+
+#+BEGIN_SRC emacs-lisp
 (defun add-to-path-string (dir path)
   (if (string-equal "" (or path ""))
       dir
@@ -62,10 +134,20 @@
            (expand-file-name dir "~")
            (getenv "PATH")))
   (add-to-list 'exec-path dir))
+#+END_SRC
 
+*** Linux-only
+
+On Linux, I keep some useful scripts and executables in =~/.local/bin/=.
+
+#+BEGIN_SRC emacs-lisp
 (unless (windows-p)
   (add-to-exec-path (expand-file-name ".local/bin" "~")))
+#+END_SRC
 
+*** Define directory constants
+
+#+BEGIN_SRC emacs-lisp
 (defconst dir/emacsd (file-name-as-directory
                       (expand-file-name ".emacs.d" (getenv "HOME")))
   "Emacs configuration directory.")
@@ -83,7 +165,12 @@
                       "Org")
                     dir/home))
   "Org file directory.")
+#+END_SRC
+** Useful stuff
+*** Keybindings
 
+There are a lot of things that are useful to toggle on and off; various minor modes such as =whitespace-mode=, line truncation, etc. We define a common keymap to use for these commands:
+#+BEGIN_SRC emacs-lisp
 (setq toggle/prefix "C-x t")
 (setq toggle/keymap (make-sparse-keymap))
 
@@ -91,29 +178,62 @@
   (define-key toggle/keymap key command))
 
 (global-set-key (kbd toggle/prefix) toggle/keymap)
+#+END_SRC
 
+Go ahead and define some toggle commands for built in stuff:
+#+BEGIN_SRC emacs-lisp
 (toggle/bind-key "l" 'whitespace-mode)
 (toggle/bind-key "w" 'toggle-truncate-lines)
+#+END_SRC
 
+*** Winner mode
+
+Winner mode saves and restores window configurations. Enable it.
+#+BEGIN_SRC emacs-lisp
 (winner-mode 1)
+#+END_SRC
 
+** Packages
+*** Initialization
+
+We need to initialize the package system and manually install and load [[https://github.com/jwiegley/use-package][use-package]] so that we can use it to manage other packages.
+
+Load =package.el=:
+#+BEGIN_SRC emacs-lisp
 (require 'package)
+#+END_SRC
 
+Add the MELPA and Org-mode repositories:
+#+BEGIN_SRC emacs-lisp
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
              '("org" . "http://orgmode.org/elpa/") t)
+#+END_SRC
+The Org-mode ELPA repository can be used to install the latest released version of org-mode, but it must be installed manually to override the built-in version.
 
+Initialize the package system and download a list of packages if it doesn’t exist (i.e. on a new system or it has been removed manually):
+#+BEGIN_SRC emacs-lisp
 (package-initialize)
 
 (unless package-archive-contents
   (package-refresh-contents))
+#+END_SRC
 
+Now install and require use-package:
+#+BEGIN_SRC emacs-lisp
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
 (require 'use-package)
+#+END_SRC
 
+And now we are ready to use =use-package= to configure our packages, and it will even download them for us!
+*** Evil
+
+Load evil first because we will want to configure powerline and key bindings for some later packages:
+
+#+BEGIN_SRC emacs-lisp
 (use-package evil
   :ensure t
   :demand t
@@ -154,7 +274,12 @@
     (define-key evil-insert-state-map (kbd "C-p") nil)
     (define-key evil-insert-state-map (kbd "C-n") nil)
     ))
+#+END_SRC
 
+*** Theme and Powerline
+
+The powerline config is mostly from: https://github.com/syl20bnr/spacemacs/blob/master/spacemacs/packages.el.
+#+BEGIN_SRC emacs-lisp
 (use-package powerline
   :ensure t
   :demand t
@@ -232,7 +357,10 @@
                           (powerline-fill face2 (powerline-width rhs))
                           (powerline-render rhs)))))))
     ))
+#+END_SRC
 
+Load a theme:
+#+BEGIN_SRC emacs-lisp
 (use-package moe-theme
   :ensure t
   :config
@@ -247,9 +375,29 @@
     (moe-dark)
     (powerline-moe-theme)
     ))
+#+END_SRC
 
+#+BEGIN_SRC emacs-lisp :tangle no
+(use-package ample-theme
+  :ensure t
+  :config (load-theme 'ample t))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp :tangle no
+(use-package zenburn-theme
+  :ensure t
+  :config
+  (progn (load-theme 'zenburn t)))
+#+END_SRC
+
+Set the powerline theme (this gives the themes a chance to set the faces):
+#+BEGIN_SRC emacs-lisp
 (my-powerline-theme)
+#+END_SRC
 
+*** Org Mode
+
+#+BEGIN_SRC emacs-lisp
 (use-package org
   :ensure t
   :commands org-mode
@@ -286,12 +434,22 @@
 
     (use-package htmlize :ensure t)
     ))
+#+END_SRC
 
+*** Magit
+
+#+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t
   :commands magit-status
   :bind ("C-x g" . magit-status))
+#+END_SRC
 
+*** Helm
+
+See helm configs at [[https://github.com/bbatsov/prelude][Prelude]] and [[http://tuhdo.github.io/helm-intro.html][A Package in a league of its own: Helm]]
+.
+#+begin_src emacs-lisp
 (use-package helm
   :ensure t
   :init
@@ -324,13 +482,23 @@
                          "b" 'helm-mini)
 
     (helm-mode)))
+#+end_src
 
+*** TeX modes
+
+#+BEGIN_SRC emacs-lisp
 (use-package tex
   :mode ("\\.tex\\'" . latex-mode)
   :ensure auctex)
 (use-package reftex
   :ensure t)
+#+END_SRC
 
+*** Programming language modes
+
+**** Clojure
+
+#+BEGIN_SRC emacs-lisp
 (use-package clojure-mode
   :ensure t
   :mode "\\.clj\\'")
@@ -338,24 +506,47 @@
 (use-package cider
   :defer t
   :ensure t)
+#+END_SRC
 
+**** Gnuplot
+
+#+BEGIN_SRC emacs-lisp
 (use-package gnuplot
   :ensure t
   :commands gnuplot-mode)
+#+END_SRC
 
+**** Julia
+
+#+BEGIN_SRC emacs-lisp
 (use-package julia-mode
   :load-path "~/.emacs.d/elisp/"
   :mode "\\.jl\\'")
+#+END_SRC
 
+**** Python
+
+#+BEGIN_SRC emacs-lisp
 (use-package python
   :commands python-mode
   :mode ("wscript\\'" . python-mode))
+#+END_SRC
 
+*** Other major modes
+
+**** Markdown
+
+#+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
   :ensure t
   :commands markdown-mode)
+#+END_SRC
 
+*** Unicycle mode
+
+#+BEGIN_SRC emacs-lisp
 (use-package unicycle-mode
   :load-path "~/.emacs.d/elisp/"
   :commands unicycle-mode
   :init (toggle/bind-key "u" 'unicycle-mode))
+#+END_SRC

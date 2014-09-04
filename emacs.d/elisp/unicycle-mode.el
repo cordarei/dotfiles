@@ -75,7 +75,7 @@
 
 (define-minor-mode unicycle-mode
   "Cycle through typographical punctuation when pressing keys like ‘-’"
-  :lighter " UC"
+  :lighter " UniCycle"
   :keymap (let ((map (make-sparse-keymap)))
             (define-key map [?-] 'unicycle/hyphen)
             (define-key map [?'] 'unicycle/apostrophe)

@@ -285,6 +285,8 @@
     (setq org-export-babel-evaluate nil)
 
     (use-package htmlize :ensure t)
+
+    (use-package org-indent :diminish "")
     ))
 
 (use-package magit

@@ -436,7 +436,7 @@ I really need to improve my Org configuration, and especially update for version
 
     (use-package htmlize :ensure t)
 
-    (diminish 'org-indent-mode)
+    (use-package org-indent :diminish "")
     ))
 #+END_SRC
 

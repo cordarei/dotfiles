@@ -397,6 +397,8 @@ Set the powerline theme (this gives the themes a chance to set the faces):
 
 *** Org Mode
 
+I really need to improve my Org configuration, and especially update for version 8.
+
 #+BEGIN_SRC emacs-lisp
 (use-package org
   :ensure t
@@ -433,6 +435,8 @@ Set the powerline theme (this gives the themes a chance to set the faces):
     (setq org-export-babel-evaluate nil)
 
     (use-package htmlize :ensure t)
+
+    (diminish 'org-indent-mode)
     ))
 #+END_SRC
 

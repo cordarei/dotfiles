@@ -121,7 +121,7 @@
   (progn
     ; from https://github.com/syl20bnr/spacemacs/blob/master/spacemacs/packages.el
     (setq evil-mode-line-format 'before)
-    (setq evil-emacs-state-cursor  '("red" bar))
+    (setq evil-emacs-state-cursor  '("red" box))
     (setq evil-normal-state-cursor '("orange" box))
     (setq evil-visual-state-cursor '("black" box))
     (setq evil-insert-state-cursor '("green3" bar))
@@ -148,11 +148,19 @@
       :ensure t
       :init (global-evil-surround-mode 1))
 
-    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+    ;; add useful keys
     (define-key evil-normal-state-map (kbd "C-w q") 'evil-quit)
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+
+    ;; unbind keys
+    ;; insert
     (define-key evil-insert-state-map (kbd "C-e") nil)
     (define-key evil-insert-state-map (kbd "C-p") nil)
     (define-key evil-insert-state-map (kbd "C-n") nil)
+    ;; normal
+    (define-key evil-normal-state-map (kbd "C-p") nil)
+    (define-key evil-normal-state-map (kbd "C-n") nil)
+    (define-key evil-normal-state-map (kbd "M-.") nil)
     ))
 
 (use-package powerline
@@ -292,11 +300,12 @@
 (use-package magit
   :ensure t
   :commands magit-status
+  :diminish magit-auto-revert-mode
   :bind ("C-x g" . magit-status))
 
 (use-package helm
   :ensure t
-  :diminish helm-mode
+  :diminish ""
   :init
   (progn
 
@@ -307,24 +316,22 @@
     (require 'helm-files)
     (require 'helm-grep)
 
-    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebihnd tab to do persistent action
-    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-    (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-z")  'helm-select-action)
 
     (setq helm-candidate-number-limit 10)
-    ;; From https://gist.github.com/antifuchs/9238468
-    (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
-          helm-input-idle-delay 0.01  ; this actually updates things
-                                        ; reeeelatively quickly.
+
+    (setq helm-idle-delay 0.1
+          helm-input-idle-delay 0.01
           helm-quick-update t
           helm-M-x-requires-pattern nil
           helm-ff-skip-boring-files t
           helm-buffers-fuzzy-matching t
           helm-ff-file-name-history-use-recentf t
-          helm-move-to-line-cycle-in-source t ; move to end or beginning of source
-                                        ; when reaching top or bottom of source.
-          helm-split-window-default-side 'other ;; open helm buffer in another window
-          helm-split-window-in-side-p t ;; open helm buffer inside current window, not occupy whole other window
+          helm-move-to-line-cycle-in-source t
+          helm-split-window-default-side 'other
+          helm-split-window-in-side-p t
           )
 
     (evil-leader/set-key ":" 'helm-M-x
@@ -339,26 +346,24 @@
     (use-package helm-gtags
       :ensure t
       :defer t
+      :diminish ""
       :init
       (progn
-        (setq helm-gtags-ignore-case t
+        (setq helm-gtags-prefix-key "\C-cg"
+              helm-gtags-suggested-key-mapping nil
+              helm-gtags-ignore-case t
               helm-gtags-auto-update t
               helm-gtags-use-input-at-cursor t
               helm-gtags-pulse-at-cursor t
-              helm-gtags-suggested-key-mapping t
               )
-
-        (setq helm-gtags-prefix-key "C-c g"))
-      :config
-      (progn
 
         (add-hook 'dired-mode-hook 'helm-gtags-mode)
         (add-hook 'eshell-mode-hook 'helm-gtags-mode)
         (add-hook 'prog-mode-hook 'helm-gtags-mode)
-
-
-        (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-select)
-        (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+        )
+      :config
+      (progn
+        (global-set-key (kbd "M-.") 'helm-gtags-dwim)
         ;; (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
         ;; (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
         ;; (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
@@ -367,10 +372,12 @@
 
 (use-package company
   :ensure t
+  :diminish ""
   :config
   (progn
 
     (use-package semantic
+      :diminish abbrev-mode
       :config
       (progn
         (global-semanticdb-minor-mode 1)

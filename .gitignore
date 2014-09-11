@@ -7,3 +7,4 @@ emacs.d/elpa
 emacs.d/eshell
 emacs.d/custom.el
 emacs.d/session*
+/emacs.d/semanticdb/

@@ -19,6 +19,7 @@
 (setq ring-bell-function 'ignore)
 
 (prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
 
 (setq auto-save-default nil)
 (setq make-backup-files nil)

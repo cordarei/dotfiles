@@ -51,6 +51,7 @@ To really force UTF-8, you will need to customize =file-coding-alist=.
 
 #+BEGIN_SRC emacs-lisp
 (prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
 #+END_SRC
 
 *** Backups? We don’t need no stinkin’ backups!

@@ -260,42 +260,88 @@
 (my-powerline-theme)
 
 (use-package org
-  :ensure t
-  :commands org-mode
+  :defer t
+  :commands org-agenda
+  :init
+  (progn
+    ;; general org-mode behavior
+    (setq org-directory dir/org
+          org-startup-indented t
+          org-startup-folded 'content
+          org-use-speed-commands t
+          )
+
+    ;; org-agenda
+    (define-key global-map (kbd "C-c a") 'org-agenda)
+    (setq org-agenda-files (list (expand-file-name "agenda.org" dir/org))
+          org-agenda-span 'month
+          org-agenda-window-setup 'current-window
+          org-log-done t
+          )
+
+    ;; enable org-export backends
+    (setq org-export-backends '(ascii html latex beamer))
+    )
   :config
   (progn
-    ;; configure general org-mode behavior
-    (setq org-startup-indented t)
-    (setq org-startup-folded 'content)
-    (setq org-directory dir/org)
 
-    ;; configure org-agenda
-    (setq org-agenda-files (list "agenda.org"))
-    (setq org-log-done t)
-    (setq org-agenda-span 'month)
-    (setq org-agenda-window-setup 'current-window)
-    (define-key global-map (kbd "C-c a") 'org-agenda)
-
-    ;; configure latex export
-    (setq org-latex-pdf-process
-          '("latexmk -c" "latexmk -g -xelatex %f"))
-
-    ;; org-babel for literate programming
-    (org-babel-do-load-languages 'org-babel-load-languages
-                                 '((emacs-lisp . t)
-                                   (clojure . t)
-                                   (python . t)
-                                   (sh . t)
-                                   (gnuplot . t)))
-    (setq org-src-fontify-natively t)
-    (setq org-src-preserve-indentation t)
-
-    (setq org-export-html-coding-system 'utf-8)
-    (setq org-export-babel-evaluate nil)
-
+    ;; configure sub packages and other packages used with org-mode
+    (use-package org-indent :diminish "")
     (use-package htmlize :ensure t)
 
-    (use-package org-indent :diminish "")
+
+    ;; do more intensive customization of org export:
+    ;; - latex
+    (setq org-latex-pdf-process '("latexmk -g -xelatex %f")
+          org-latex-default-packages-alist nil
+          org-latex-packages-alist '(("" "graphicx" nil) ("" "float" nil))
+          org-latex-default-class "default"
+          )
+    (setq org-latex-classes ; this really calls for a macro
+          '(
+            ("default"
+             "\\documentclass[11pt]{article}
+[PACKAGES]
+\\usepackage{amssymb}
+\\usepackage{fontspec}
+\\usepackage{xunicode}
+\\usepackage{url}
+\\usepackage{hyperref}"
+             ("\\section{%s}" . "\\section*{%s}")
+             ("\\subsection{%s}" . "\\subsection*{%s}")
+             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+             ("\\paragraph{%s}" . "\\paragraph*{%s}")
+             ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+
+            ("beamer"
+             "\\documentclass{beamer}
+[PACKAGES]
+\\usepackage{amssymb}
+\\usepackage{fontspec}
+\\usepackage{xunicode}
+\\usepackage{url}
+\\usepackage{hyperref}"
+             ("\\section{%s}" . "\\section*{%s}")
+             ("\\subsection{%s}" . "\\subsection*{%s}")
+             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+             ("\\paragraph{%s}" . "\\paragraph*{%s}")
+             ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+            ))
+
+
+    ;; org-babel for literate programming
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '(
+       (clojure . t)
+       (emacs-lisp . t)
+       (gnuplot . t)
+       (python . t)
+       (sh . t)
+      )
+    )
+    (setq org-src-fontify-natively t)
+    (setq org-src-preserve-indentation t)
     ))
 
 (use-package magit

@@ -320,7 +320,9 @@
 \\usepackage{fontspec}
 \\usepackage{xunicode}
 \\usepackage{url}
-\\usepackage{hyperref}"
+\\usepackage{hyperref}
+\\setbeamertemplate{navigation symbols}{}
+"
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")

@@ -468,7 +468,9 @@ Set the powerline theme (this gives the themes a chance to set the faces):
 \\usepackage{fontspec}
 \\usepackage{xunicode}
 \\usepackage{url}
-\\usepackage{hyperref}"
+\\usepackage{hyperref}
+\\setbeamertemplate{navigation symbols}{}
+"
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")

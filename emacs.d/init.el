@@ -95,6 +95,7 @@
 
 (toggle/bind-key "l" 'whitespace-mode)
 (toggle/bind-key "w" 'toggle-truncate-lines)
+(toggle/bind-key "e" 'electric-indent-mode)
 
 (winner-mode 1)
 
@@ -464,6 +465,11 @@
 (use-package python
   :commands python-mode
   :mode ("wscript\\'" . python-mode))
+
+(use-package lua-mode
+  :ensure t
+  :commands lua-mode
+  :mode "\\.lua\\'")
 
 (use-package markdown-mode
   :ensure t

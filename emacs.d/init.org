@@ -185,6 +185,7 @@ Go ahead and define some toggle commands for built in stuff:
 #+BEGIN_SRC emacs-lisp
 (toggle/bind-key "l" 'whitespace-mode)
 (toggle/bind-key "w" 'toggle-truncate-lines)
+(toggle/bind-key "e" 'electric-indent-mode)
 #+END_SRC
 
 *** Winner mode
@@ -654,6 +655,15 @@ See helm configs at [[https://github.com/bbatsov/prelude][Prelude]] and [[http:/
 (use-package python
   :commands python-mode
   :mode ("wscript\\'" . python-mode))
+#+END_SRC
+
+**** Lua
+
+#+BEGIN_SRC emacs-lisp
+(use-package lua-mode
+  :ensure t
+  :commands lua-mode
+  :mode "\\.lua\\'")
 #+END_SRC
 
 *** Other major modes

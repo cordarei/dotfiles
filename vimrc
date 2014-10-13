@@ -89,19 +89,6 @@ set noswapfile
 " enable UniCycle plugin automatically for rst files
 autocmd MyAutoCmds FileType rst UniCycleOn
 
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-
-" vimfiler
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_enable_auto_cd = 1
-
-" html5.vim: disable unneeded options
-let g:html5_event_handler_attributes_complete = 0
-let g:html5_rdfa_attributes_complete = 0
-let g:html5_microdata_attributes_complete = 0
-let g:html5_aria_attributes_complete = 0
-
 " ================================ Keys ================================
 
 " Set leader to comma.
@@ -127,13 +114,6 @@ nnoremap <leader>S :%s/
 
 " Toggle UniCycle plugin
 nnoremap <C-u><C-u> :UniCycleToggle<cr>
-
-" Unite shortcuts
-nnoremap <C-u><C-f> :Unite file<cr>
-nnoremap <C-u><C-b> :Unite buffer<cr>
-
-" VimFiler
-nnoremap <leader>f :VimFilerExplorer<cr>
 
 " fugitive maps
 nnoremap <leader>gd :Gdiff<cr>
@@ -185,17 +165,3 @@ nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 " Make Y consistent with C and D.  See :help Y.
 nnoremap Y y$
-
-" ======================= Functions and Commands =======================
-
-" Convenient command to see the difference between the current buffer
-" and the file it was loaded from, thus the changes you made.
-command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-      \ | wincmd p | diffthis
-
-" call make silently and redraw the screen afterward
-command! Make silent make | redraw!
-
-nnoremap <leader>m :Make<cr>
-
-command! Scratch edit ~/.vim/scratch

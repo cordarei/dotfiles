@@ -1,6 +1,5 @@
 [core]
 	editor = vim
-	pager = less -FSRX
 [alias]
 	st = status
 	b = branch

@@ -1,8 +1,6 @@
 [core]
 	editor = vim
 	pager = less -FSRX
-[init]
-	templatedir = ~/.config/dotfiles/git_template
 [alias]
 	st = status
 	b = branch
@@ -12,18 +10,5 @@
 	email = joseph.irwin.gt@gmail.com
 [color]
 	ui = auto
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-[color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
 [push]
 	default = current

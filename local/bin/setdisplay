@@ -21,7 +21,7 @@ class StructureMatcher(object):
         if isinstance(data, str):
             self.lines = data.split('\n')
         else:
-            assert(_isiter(data))
+            assert _isiter(data)
             self.lines = list(data)
         self.length = len(self.lines)
 
@@ -35,13 +35,13 @@ class StructureMatcher(object):
         if isinstance(begin, str):
             pat = re.compile(begin)
             begin = self.index(lambda l: pat.search(l))
-        assert(isinstance(begin, int))
+        assert isinstance(begin, int)
         if end is None:
             end = len(self.lines)
         elif isinstance(end, str):
             pat = re.compile(end)
             end = self.index(lambda l: pat.search(l))
-        assert(isinstance(end, int))
+        assert isinstance(end, int)
         return StructureMatcher(self.lines[begin:end])
 
     def split(self, pat):
@@ -70,7 +70,9 @@ def list_outputs():
     for sm in StructureMatcher(out.decode()).range(1).split('^[A-Z]+\d'):
         pat = re.compile('^([A-Z]+)(\d*)\s(\w+)')
         (disp, num, con) = pat.match(sm.lines[0]).group(1, 2, 3)
-        assert(disp in OUTPUT_TYPES)
+        if disp == 'VIRTUAL':
+            continue
+        assert disp in OUTPUT_TYPES, "{} not in {}".format(disp, OUTPUT_TYPES)
         rs = []
         if con == 'connected':
             rs = [_parse_res_line(l) for l in sm.lines[1:]]

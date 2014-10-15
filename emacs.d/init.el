@@ -475,6 +475,11 @@
   :ensure t
   :commands markdown-mode)
 
+(use-package tup-mode
+  :ensure t
+  :commands tup-mode
+  :mode "Tupfile.ini")
+
 (use-package unicycle-mode
   :load-path "~/.emacs.d/elisp/"
   :commands unicycle-mode

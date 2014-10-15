@@ -676,6 +676,15 @@ See helm configs at [[https://github.com/bbatsov/prelude][Prelude]] and [[http:/
   :commands markdown-mode)
 #+END_SRC
 
+**** Tup
+
+#+BEGIN_SRC emacs-lisp
+(use-package tup-mode
+  :ensure t
+  :commands tup-mode
+  :mode "Tupfile.ini")
+#+END_SRC
+
 *** Unicycle mode
 
 #+BEGIN_SRC emacs-lisp

@@ -13,18 +13,22 @@ def configfile name
   return "#{ENV['HOME']}/.config/#{name}"
 end
 
+def localfile name
+  return "#{ENV['HOME']}/.local/#{name}"
+end
+
 
 
 def dolink filename, linkname
-  puts "symlinking '#{filename}' to '#{linkname}' ..."
+  puts "# symlinking '#{filename}' to '#{linkname}' ..."
   if File.exist? linkname
-    puts "'#{linkname}' exists!"
+    puts "# '#{linkname}' exists!"
     if File.symlink? linkname
-      puts "'#{linkname}' is a symlink! Removing ..."
+      puts "# '#{linkname}' is a symlink! Removing ..."
       rm linkname
     else
-      if File.directory? linkname
-        puts "'#{linkname}' is a directory! Moving '#{linkname}' to '#{linkname}.bak' ..."
+      if File.directory? filename and File.directory? linkname
+        puts "# '#{linkname}' is a directory! Moving '#{linkname}' to '#{linkname}.bak' ..."
         mv linkname, "#{linkname}.bak"
       end
     end
@@ -71,5 +75,13 @@ task :vim do
   dohome 'vimrc'
 end
 
+task :localbin do
+    FileList['local/bin/*'].each do |f|
+        s = herefile(f)
+        t = localfile('bin/')
+        dolink s,t
+    end
+end
 
-task :default => [:git, :fish, :awesome, :emacs, :tmux, :vim]
+
+task :default => [:git, :fish, :awesome, :emacs, :tmux, :vim, :localbin]

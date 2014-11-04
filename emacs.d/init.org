@@ -516,7 +516,11 @@ Set the powerline theme (this gives the themes a chance to set the faces):
   :ensure t
   :commands magit-status
   :diminish magit-auto-revert-mode
-  :bind ("C-x g" . magit-status))
+  :bind ("C-x g" . magit-status)
+  :config
+  (define-key magit-status-mode-map (kbd "k") nil)
+  (define-key magit-status-mode-map (kbd "K") 'magit-discard-item)
+  )
 #+END_SRC
 
 *** Helm

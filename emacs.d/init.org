@@ -110,6 +110,13 @@ To really force UTF-8, you will need to customize =file-coding-alist=.
 (electric-indent-mode 1)
 #+END_SRC
 
+*** SHOW ME (the matching parens)
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (show-paren-mode)))
+#+END_SRC
 ** OS-Specific Settings and Directories
 
 On Windows, emacs (or the =runemacs.exe= binary) starts up in the folder it lives in, and the =HOME= environment variable is set to the =%APPDATA%/Roaming= folder. This is rather inconvenient, so the first thing to do is to create a new shortcut to =runemacs.exe= named ‘emacs’, and set the “Start In:” property to, say, =C:\\Users\\<username>=. This shortcut can live anywhere; I have it pinned to my taskbar. The =HOME= variable we leave alone, since it is used by Emacs to find the =.emacs.d= directory. We don’t need it anyway. For convenience we define some useful directories as constants.
@@ -666,6 +673,13 @@ See helm configs at [[https://github.com/bbatsov/prelude][Prelude]] and [[http:/
   :mode "\\.lua\\'")
 #+END_SRC
 
+**** C++
+
+#+BEGIN_SRC emacs-lisp
+(use-package cc-mode
+  :commands (c-mode c++-mode)
+  :mode ("\\.h\\(pp|h\\)?\\'" . c++-mode))
+#+END_SRC
 *** Other major modes
 
 **** Markdown

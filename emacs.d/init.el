@@ -49,6 +49,10 @@
 
 (electric-indent-mode 1)
 
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (show-paren-mode)))
+
 (defun windows-p ()
   (eq system-type 'windows-nt))
 
@@ -470,6 +474,10 @@
   :ensure t
   :commands lua-mode
   :mode "\\.lua\\'")
+
+(use-package cc-mode
+  :commands (c-mode c++-mode)
+  :mode ("\\.h\\(pp|h\\)?\\'" . c++-mode))
 
 (use-package markdown-mode
   :ensure t

@@ -481,7 +481,22 @@
 
 (use-package cc-mode
   :commands (c-mode c++-mode)
-  :mode ("\\.h\\(pp|h\\)?\\'" . c++-mode))
+  :mode ("\\.h\\(pp|h\\)?\\'" . c++-mode)
+  :config
+
+  ;; http://programmers.stackexchange.com/q/87250
+  ; gray out the "assert(...)" wrapper
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (font-lock-add-keywords nil
+                                      '(("\\<\\(assert\(.*\);\\)" 1 '(:foreground "#444444") t)))))
+
+  ; gray out the stuff inside parenthesis with a slightly lighter color
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (font-lock-add-keywords nil
+                                      '(("\\<assert\\(\(.*\);\\)" 1 '(:foreground "#666666") t)))))
+  )
 
 (use-package markdown-mode
   :ensure t

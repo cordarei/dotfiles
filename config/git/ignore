@@ -30,6 +30,18 @@ cscope.po.out
 
 
 #
+# Python
+#
+
+# Compiled files
+__pycache__/
+*.py[cod]
+
+# IPython Notebook
+.ipynb_checkpoints/
+
+
+#
 # TeX / LaTeX / etc
 #
 

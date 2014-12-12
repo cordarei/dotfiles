@@ -8,6 +8,7 @@
 # Ignore temporary files created by Emacs and Vim
 *~
 \#*\#
+.netrwhist
 
 
 #

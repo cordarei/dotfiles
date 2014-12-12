@@ -1,9 +1,11 @@
 [core]
 	editor = vim
 [alias]
-	st = status
+	s = status
 	b = branch
 	co = checkout
+	f = fetch
+	fm = pull
 [user]
 	name = Joseph Irwin
 	email = joseph.irwin.gt@gmail.com

@@ -274,6 +274,7 @@
           org-startup-indented t
           org-startup-folded 'content
           org-use-speed-commands t
+          org-catch-invisible-edits 'error
           )
 
     ;; org-agenda

@@ -425,6 +425,7 @@ Set the powerline theme (this gives the themes a chance to set the faces):
           org-startup-indented t
           org-startup-folded 'content
           org-use-speed-commands t
+          org-catch-invisible-edits 'error
           )
 
     ;; org-agenda

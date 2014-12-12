@@ -245,6 +245,9 @@
                           (powerline-render lhs)
                           (powerline-fill face2 (powerline-width rhs))
                           (powerline-render rhs)))))))
+
+    ;; setting the powerline mode line in 'after-init-hook solves problems with other packages screwing it up (looking at you, workgroups2!)
+    (add-hook 'after-init-hook (lambda () (my-powerline-theme)))
     ))
 
 (use-package moe-theme
@@ -261,8 +264,6 @@
     (moe-dark)
     (powerline-moe-theme)
     ))
-
-(my-powerline-theme)
 
 (use-package org
   :defer t
@@ -516,3 +517,14 @@
 
 (use-package undo-tree
   :diminish "")
+
+(use-package workgroups2
+  :ensure t
+  :diminish (workgroups-mode . "")
+  :config
+  (setq wg-mode-line-display-on nil)
+  (setq wg-prefix-key (kbd "C-c z"))
+  (setq wg-session-file "~/.emacs.d/workgroups")
+  :init
+  (workgroups-mode 1)
+  )

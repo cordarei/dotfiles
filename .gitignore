@@ -4,6 +4,7 @@
 /emacs.d/elpa
 /emacs.d/session*
 /emacs.d/semanticdb/
+/emacs.d/workgroups
 
 /config/fish/fish_history
 /config/fish/fishd.*

@@ -189,13 +189,13 @@
 
     (defpowerline powerline-evil-mode (propertize-evil-mode-line-tag))
 
-    (defvar powerline-minor-modesp nil)
+    (defvar powerline-minor-modes-p t)
     (defun powerline-minor-modes-toggle ()
       "Toggle display of minor modes."
       (interactive)
-      (if powerline-minor-modesp
-          (setq powerline-minor-modesp nil)
-        (setq powerline-minor-modesp t)))
+      (if powerline-minor-modes-p
+          (setq powerline-minor-modes-p nil)
+        (setq powerline-minor-modes-p t)))
 
     (defun my-powerline-theme ()
       "Set up my powerline theme with evil mode etc."
@@ -219,7 +219,7 @@
                                             (powerline-major-mode face1 'l)
                                             (powerline-raw " " face1))
 
-                                           (if powerline-minor-modesp
+                                           (if powerline-minor-modes-p
                                                (list (powerline-arrow-right face1 nil)
                                                      (powerline-minor-modes nil 'l)
                                                      (powerline-raw mode-line-process nil 'l)

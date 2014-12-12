@@ -725,7 +725,7 @@ See helm configs at [[https://github.com/bbatsov/prelude][Prelude]] and [[http:/
 (use-package unicycle-mode
   :load-path "~/.emacs.d/elisp/"
   :commands unicycle-mode
-  :diminish " ¶"
+  :diminish (unicycle-mode . " ¶")
   :init (toggle/bind-key "u" 'unicycle-mode))
 #+END_SRC
 

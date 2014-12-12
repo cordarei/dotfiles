@@ -512,7 +512,7 @@
 (use-package unicycle-mode
   :load-path "~/.emacs.d/elisp/"
   :commands unicycle-mode
-  :diminish " ¶"
+  :diminish (unicycle-mode . " ¶")
   :init (toggle/bind-key "u" 'unicycle-mode))
 
 (use-package undo-tree

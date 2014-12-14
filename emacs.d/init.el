@@ -500,6 +500,10 @@
   :commands (c-mode c++-mode)
   :mode ("\\.h\\(pp|h\\)?\\'" . c++-mode)
   :config
+  (use-package clang-format
+    :if (file-exists-p "/usr/share/clang/clang-format.el")
+    :load-path "/usr/share/clang/"
+    :commands clang-format-region)
 
   (defun my-c-mode-common-hook ()
     ;; http://programmers.stackexchange.com/q/87250
@@ -509,6 +513,7 @@
     )
 
   (defun my-c++-mode-hook ()
+    (define-key c++-mode-map (kbd "M-q") 'clang-format-region)
     (irony-mode)
     )
   :init

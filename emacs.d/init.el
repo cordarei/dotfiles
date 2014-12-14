@@ -438,6 +438,7 @@
 
     (use-package semantic
       :diminish abbrev-mode
+      :disabled t
       :config
       (progn
         (global-semanticdb-minor-mode 1)
@@ -446,6 +447,19 @@
 
         (semantic-mode 1)
         ))
+
+    (use-package company-irony
+      :ensure t
+      :if (not (windows-p))
+      :diminish ""
+      :config
+      (use-package irony-mode
+        :commands irony-mode
+        :config
+        (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+        )
+      (add-to-list 'company-backends 'company-irony)
+      )
 
     (global-company-mode)
     ))
@@ -486,18 +500,19 @@
   :mode ("\\.h\\(pp|h\\)?\\'" . c++-mode)
   :config
 
-  ;; http://programmers.stackexchange.com/q/87250
-  ; gray out the "assert(...)" wrapper
-  (add-hook 'c-mode-common-hook
-            (lambda ()
-              (font-lock-add-keywords nil
-                                      '(("\\<\\(assert\(.*\);\\)" 1 '(:foreground "#444444") t)))))
+  (defun my-c-mode-common-hook ()
+    ;; http://programmers.stackexchange.com/q/87250
+    (font-lock-add-keywords nil
+                            '(("\\<\\(assert\(.*\);\\)" 1 '(:foreground "#444444") t)
+                              ("\\<assert\\(\(.*\);\\)" 1 '(:foreground "#666666") t)))
+    )
 
-  ; gray out the stuff inside parenthesis with a slightly lighter color
-  (add-hook 'c-mode-common-hook
-            (lambda ()
-              (font-lock-add-keywords nil
-                                      '(("\\<assert\\(\(.*\);\\)" 1 '(:foreground "#666666") t)))))
+  (defun my-c++-mode-hook ()
+    (irony-mode)
+    )
+  :init
+  (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+  (add-hook 'c++-mode-hook 'my-c++-mode-hook)
   )
 
 (use-package markdown-mode

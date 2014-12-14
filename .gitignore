@@ -5,6 +5,7 @@
 /emacs.d/session*
 /emacs.d/semanticdb/
 /emacs.d/workgroups
+/emacs.d/irony/
 
 /config/fish/fish_history
 /config/fish/fishd.*

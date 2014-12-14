@@ -435,6 +435,7 @@
   :diminish ""
   :config
   (progn
+    (setq company-selection-wrap-around t)
 
     (use-package semantic
       :diminish abbrev-mode

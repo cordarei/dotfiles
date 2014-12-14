@@ -604,6 +604,7 @@ See helm configs at [[https://github.com/bbatsov/prelude][Prelude]] and [[http:/
   :diminish ""
   :config
   (progn
+    (setq company-selection-wrap-around t)
 
     (use-package semantic
       :diminish abbrev-mode

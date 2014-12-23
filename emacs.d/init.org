@@ -570,6 +570,7 @@ See helm configs at [[https://github.com/bbatsov/prelude][Prelude]] and [[http:/
 
     (use-package helm-gtags
       :ensure t
+      :if (not (windows-p))
       :defer t
       :diminish ""
       :init

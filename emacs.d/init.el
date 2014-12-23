@@ -405,6 +405,7 @@
 
     (use-package helm-gtags
       :ensure t
+      :if (not (windows-p))
       :defer t
       :diminish ""
       :init

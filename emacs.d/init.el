@@ -132,6 +132,8 @@
     (setq evil-visual-state-cursor '("black" box))
     (setq evil-insert-state-cursor '("green3" bar))
     (setq evil-motion-state-cursor '("purple" box))
+
+    (setq-default evil-symbol-word-search t)
     )
   :config
   (progn

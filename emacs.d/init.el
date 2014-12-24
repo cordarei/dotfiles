@@ -380,26 +380,24 @@
     (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
     (define-key helm-map (kbd "C-z")  'helm-select-action)
 
-    (setq helm-candidate-number-limit 10)
-
     (setq helm-idle-delay 0.1
           helm-input-idle-delay 0.01
           helm-quick-update t
-          helm-M-x-requires-pattern nil
-          helm-ff-skip-boring-files t
           helm-buffers-fuzzy-matching t
+          helm-ff-skip-boring-files t
           helm-ff-file-name-history-use-recentf t
-          helm-move-to-line-cycle-in-source t
-          helm-split-window-default-side 'other
           helm-split-window-in-side-p t
           )
 
     (evil-leader/set-key ":" 'helm-M-x
+                         "f" 'helm-for-files
                          "b" 'helm-mini)
 
+    (define-key helm-command-map (kbd "o") 'helm-occur)
+    (define-key helm-command-map (kbd "g") 'helm-do-grep)
 
-    (global-set-key (kbd "C-c h o") 'helm-occur)
-    (global-set-key (kbd "C-c h g") 'helm-do-grep)
+    (global-set-key (kbd "C-x C-f") 'helm-find-files)
+    (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 
     (helm-mode)
 
@@ -418,8 +416,8 @@
               helm-gtags-pulse-at-cursor t
               )
 
-        (add-hook 'dired-mode-hook 'helm-gtags-mode)
-        (add-hook 'eshell-mode-hook 'helm-gtags-mode)
+        ;; (add-hook 'dired-mode-hook 'helm-gtags-mode)
+        ;; (add-hook 'eshell-mode-hook 'helm-gtags-mode)
         (add-hook 'prog-mode-hook 'helm-gtags-mode)
         )
       :config

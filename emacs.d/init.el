@@ -376,10 +376,6 @@
     (require 'helm-files)
     (require 'helm-grep)
 
-    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-    (define-key helm-map (kbd "C-z")  'helm-select-action)
-
     (setq helm-idle-delay 0.1
           helm-input-idle-delay 0.01
           helm-quick-update t
@@ -389,17 +385,25 @@
           helm-split-window-in-side-p t
           )
 
+    ;; key bindings within helm buffer
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-z")  'helm-select-action)
+
+    ;; key bindings starting with `helm-command-prefix-key'
+    (define-key helm-command-map (kbd "o") 'helm-occur)
+    (define-key helm-command-map (kbd "g") 'helm-do-grep)
+
+    ;; key bindings using evil-leader
     (evil-leader/set-key ":" 'helm-M-x
                          "f" 'helm-for-files
                          "b" 'helm-mini)
 
-    (define-key helm-command-map (kbd "o") 'helm-occur)
-    (define-key helm-command-map (kbd "g") 'helm-do-grep)
-
+    ;; enable helm in built-in commands
+    (helm-mode 1)
+    ;; replace some built-in commands with helm commands
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
     (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-
-    (helm-mode)
 
     (use-package helm-gtags
       :ensure t

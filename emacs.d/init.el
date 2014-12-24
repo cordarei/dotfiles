@@ -508,6 +508,10 @@
     :load-path "/usr/share/clang/"
     :commands clang-format-region)
 
+  (use-package cmake-mode
+    :ensure t
+    :mode ("CMakeLists.txt" . cmake-mode))
+
   (defun my-c-mode-common-hook ()
     ;; http://programmers.stackexchange.com/q/87250
     (font-lock-add-keywords nil

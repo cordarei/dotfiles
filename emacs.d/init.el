@@ -141,14 +141,16 @@
     ; load evil-leader before (evil-mode 1)
     (use-package evil-leader
       :ensure t
-      :init
-      (progn
-        (evil-leader/set-leader ",")
-        (global-evil-leader-mode))
       :config
-      (progn
-        (evil-leader/set-key "t" toggle/keymap)
-        ))
+      (evil-leader/set-leader ",")
+      (global-evil-leader-mode)
+      (evil-leader/set-key "t" toggle/keymap)
+
+      (defun switch-to-other-buffer ()
+        (interactive)
+        (switch-to-buffer (other-buffer)))
+      (evil-leader/set-key "l" 'switch-to-other-buffer)
+      )
 
     (evil-mode 1)
 
@@ -288,6 +290,16 @@
           org-log-done t
           )
 
+    (define-key global-map (kbd "C-c c") 'org-capture)
+    (setq org-capture-templates
+          '(
+            ("j" "Journal" item
+             (file+datetree (expand-file-name "log.org" dir/org))
+             "- %?"
+             :unnarrowed
+             )
+            ))
+
     ;; enable org-export backends
     (setq org-export-backends '(ascii html latex beamer))
     )
@@ -360,6 +372,8 @@
   :commands magit-status
   :diminish magit-auto-revert-mode
   :bind ("C-x g" . magit-status)
+  :init
+  (evil-leader/set-key "g" 'magit-status)
   :config
   (define-key magit-status-mode-map (kbd "k") nil)
   (define-key magit-status-mode-map (kbd "K") 'magit-discard-item)
@@ -385,6 +399,9 @@
           helm-ff-skip-boring-files t
           helm-ff-file-name-history-use-recentf t
           helm-split-window-in-side-p t
+          helm-display-header-line nil
+          helm-autoresize-max-height 30
+          helm-autoresize-min-height 10
           )
 
     ;; key bindings within helm buffer
@@ -398,7 +415,9 @@
 
     ;; key bindings using evil-leader
     (evil-leader/set-key ":" 'helm-M-x
-                         "f" 'helm-for-files
+                         "x" 'helm-M-x
+                         "f" 'helm-find-files
+                         "F" 'helm-for-files
                          "b" 'helm-mini)
 
     ;; enable helm in built-in commands
@@ -406,6 +425,10 @@
     ;; replace some built-in commands with helm commands
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
     (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+
+    ;; see https://www.reddit.com/r/emacs/comments/2z7nbv/lean_helm_window/
+    ;(set-face-attribute 'helm-source-header nil :height 0.1)
+    (helm-autoresize-mode 1)
 
     (use-package helm-gtags
       :ensure t
@@ -457,9 +480,10 @@
     (use-package company-irony
       :ensure t
       :if (not (windows-p))
-      :diminish ""
       :config
-      (use-package irony-mode
+      (use-package irony
+        :ensure t
+        :diminish ""
         :commands irony-mode
         :config
         (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
@@ -529,6 +553,16 @@
   (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
   (add-hook 'c++-mode-hook 'my-c++-mode-hook)
   )
+
+(use-package racket-mode
+  :ensure t
+  :commands racket-mode
+  :mode ("\\.rkt\\(d\\)?\\'" . racket-mode))
+
+(use-package scribble
+  :commands scribble-mode
+  :mode ("\\.scrbl\\'" . scribble-mode)
+  :load-path "~/.emacs.d/elisp/")
 
 (use-package markdown-mode
   :ensure t

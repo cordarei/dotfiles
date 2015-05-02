@@ -65,10 +65,10 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-light
-                         solarized-dark
-                         leuven
+   dotspacemacs-themes '(solarized-dark
+                         solarized-light
                          monokai
+                         leuven
                          zenburn)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -156,6 +156,19 @@ layers configuration."
     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
     (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
     (define-key helm-map (kbd "C-z")  'helm-select-action))
+
+  ;;; Setup org-babel
+  (with-eval-after-load 'org
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '(
+       (emacs-lisp . t)
+       (gnuplot . t)
+       (python . t)
+       (sh . t)
+       ))
+    (setq org-src-fontify-natively t)
+    (setq org-src-preserve-indentation t))
 
   ;;; Tweak evil keys
   (define-key evil-normal-state-map (kbd "C-w q") 'evil-quit)

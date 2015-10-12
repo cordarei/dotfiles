@@ -203,7 +203,7 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   ;;; C-h is backspace
-  (define-key key-translation-map [?\C-h] [?\C-?])
+  ;; (define-key key-translation-map [?\C-h] [?\C-?])
 
   ;;; Setup org-babel
   (with-eval-after-load 'org

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+for key in ed25519 rsa; do
+  if [[ -f ~/.ssh/id_$key ]]; then
+    ssh-add ~/.ssh/id_$key
+    exit $?
+  fi
+done

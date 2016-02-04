@@ -62,6 +62,11 @@ task :awesome do
   doconfig 'awesome'
 end
 
+task :arch do
+  doconfig 'pacman'
+  doconfig 'pacaur'
+end
+
 task :emacs do
   dohome 'emacs.d'
 end
@@ -84,4 +89,4 @@ task :localbin do
 end
 
 
-task :default => [:git, :fish, :awesome, :emacs, :tmux, :vim, :localbin]
+task :default => [:git, :fish, :awesome, :emacs, :tmux, :vim, :localbin, :arch]

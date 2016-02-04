@@ -43,13 +43,6 @@ in the ``vim/bundle`` directory.
 
 .. _Pathogen: https://github.com/tpope/vim-pathogen
 
-Zsh
-===
-
-I use Prezto for my Zsh environment. Prezto was originally forked from
-Oh-My-Zsh. I have my own fork with some customizations at
-`<http://github.com/cordarei/prezto/>`_\ .
-
 
 Git
 ===

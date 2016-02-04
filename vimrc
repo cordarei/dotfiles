@@ -19,7 +19,7 @@ syntax on
 set background=dark
 
 " Set colorscheme
-colorscheme jellybeans
+colorscheme elflord
 
 " Settings for python syntax highlighting
 let g:python_highlight_all=1

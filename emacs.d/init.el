@@ -323,6 +323,26 @@
             ("default"
              "\\documentclass[11pt]{article}
 [PACKAGES]
+\\usepackage{amsmath}
+\\usepackage{amssymb}
+\\usepackage{fontspec}
+\\usepackage{xunicode}
+\\usepackage{url}
+\\usepackage{hyperref}"
+             ("\\section{%s}" . "\\section*{%s}")
+             ("\\subsection{%s}" . "\\subsection*{%s}")
+             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+             ("\\paragraph{%s}" . "\\paragraph*{%s}")
+             ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+
+            ("acl2015"
+             "\\documentclass[11pt]{article}
+[PACKAGES]
+\\usepackage{acl2015}
+\\usepackage{times}
+\\usepackage{url}
+\\usepackage{latexsym}
+\\usepackage{amsmath}
 \\usepackage{amssymb}
 \\usepackage{fontspec}
 \\usepackage{xunicode}
@@ -337,6 +357,7 @@
             ("beamer"
              "\\documentclass{beamer}
 [PACKAGES]
+\\usepackage{amsmath}
 \\usepackage{amssymb}
 \\usepackage{fontspec}
 \\usepackage{xunicode}

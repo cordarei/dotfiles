@@ -31,6 +31,7 @@ values."
      latex
      markdown
      org
+     python
      racket
      (shell :variables
             shell-default-height 30
@@ -215,6 +216,11 @@ layers configuration. You are free to put any user code."
        (python . t)
        (sh . t)
        ))
+    (setq org-latex-pdf-process '("latexmk -g -xelatex %f")
+          org-latex-default-packages-alist nil
+          org-latex-packages-alist '(("" "graphicx" nil) ("" "float" nil))
+          org-latex-default-class "default"
+          )
     (setq org-src-fontify-natively t)
     (setq org-src-preserve-indentation t))
 
@@ -229,3 +235,16 @@ layers configuration. You are free to put any user code."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/Git/organized-chaos/chaos.org"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))

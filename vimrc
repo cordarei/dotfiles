@@ -6,10 +6,6 @@
 " Disable vi compatibility
 set nocompatible
 
-" Load plugins with Pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-
 
 " ============================= Appearance =============================
 
@@ -20,9 +16,6 @@ set background=dark
 
 " Set colorscheme
 colorscheme elflord
-
-" Settings for python syntax highlighting
-let g:python_highlight_all=1
 
 
 " ============================== Behavior ==============================
@@ -86,9 +79,6 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" enable UniCycle plugin automatically for rst files
-autocmd MyAutoCmds FileType rst UniCycleOn
-
 " ================================ Keys ================================
 
 " Set leader to comma.
@@ -111,19 +101,6 @@ nnoremap <leader>q :q<cr>
 "quicker sub shortcuts
 nnoremap <leader>s :s/
 nnoremap <leader>S :%s/
-
-" Toggle UniCycle plugin
-nnoremap <C-u><C-u> :UniCycleToggle<cr>
-
-" fugitive maps
-nnoremap <leader>gd :Gdiff<cr>
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gc :Gcommit<cr>
-" make fugitive more convenient with tabs
-nnoremap <leader>tgs :tab split<bar>Gstatus<bar>on<cr>
-nnoremap <leader>tgd :tab split<bar>Gdiff<cr>
-nnoremap <leader>tgc :tab split<bar>execute 'Gcommit -v'<bar>
-      \ silent! on<cr>
 
 " unbind annoying default command
 map s <Nop>

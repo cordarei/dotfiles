@@ -1,5 +1,7 @@
 .. vim: set tw=72 filetype=rst:
 
+**current status:** abandoned. information in this repo is obsolete.
+
 ==============================
 My Computing Environment
 ==============================
